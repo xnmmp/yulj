@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_Ar.css" />
+		<title>操作员管理</title>
+	</head>
+
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>操作员管理</h1>
+				<ul id="time">
+					<li>
+						<span class="span_text">操作员姓名:</span><input type="text" id="T_name" class="text_ove two" />						
+						<button class="bt" style="cursor: pointer;z-index: 100;" v-on:click='btOne()'>开始查询</button>
+					</li>
+				</ul>
+			</div>
+			<div id="div_ove" class="tab">
+				<img src="img/jia.png" class="img_">
+				<span class="bj five" v-on:click="newuser()">新增</span>
+				<img src="img/xg.png">
+				<span class="bj"  v-on:click="change()">修改</span>
+			</div>
+			<div class="cen_2">
+				<ul class="cen_ul2">
+					<li>选项</li>
+					<li>名称</li>
+					<li>部门</li>
+					<li>职务</li>
+					<li>手机</li>
+					<li>权限</li>
+					<li>详情</li>
+				</ul>
+					<ul class="cen_ul2" v-for="item in items">
+						<li>
+							<!--<input type="radio" name="name"/>-->
+							<label v-on:click="getInfo(item.ID,$event,$index)">
+								    <input type="radio" class="hidden-input" name="name1" />
+								    <span class="your style about radio" ></span>
+								</label>
+						</li>
+						<li>{{item.T_name}}</li>
+						<li>{{item.T_demartment}}</li>
+						<li>{{item.T_duct}}</li>
+						<li>{{item.T_phone}}</li>
+						<template v-for="option in itemo.cT_role">
+						<li v-if='option.value==item.T_role' v-bind:value='option.value' selected="selected" >
+								{{option.text}}
+						</li>
+						</template>	
+						<li><span v-on:click="outup(item.T_accountnumber,$index)">立即查看</span></li>
+					</ul>
+				<div class="li_show">
+						<div class="box">
+							<div class="tcdPageCode">
+							</div>
+						</div>
+				</div>
+			</div>	
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/utils.js"></script>	
+		<script type="text/javascript" src="js/jquery.page.js" ></script>
+		<script>
+			var	vm = new Vue({
+						el: '#ul_ove',
+						data: {
+							itemo:{
+								cT_role:[
+									{text:"无",value:"0"},
+									{text:"总经理",value:"2"},
+									{text:"员工",value:"3"}
+								]
+							},
+							items:'',
+							Sunmet: '',
+							id: "",
+							page:1,
+							rows:5,
+							count:0
+						},
+						methods:{
+							getInfo: function(id,items,index) {
+							vm.$data.id = id;
+							vm.$data.Sunmet =vm.$data.items[index].T_accountnumber;
+						},
+						newuser: function() {						
+							util.openWindow("CRM_Ar_co.html",{
+								Username:oves_obj.T_accountnumber,
+								UserID:oves_obj.T_UserID,
+								Token: oves_obj.Token,
+								role: oves_obj.T_role,
+								nuber:'1'
+							},"inframe");
+						},
+						change: function() {
+							if(vm.$data.id == ''){
+								alert('请选择要修改的员工！')
+							}else{
+								util.openWindow("CRM_Ar_co.html",{
+								Username:oves_obj.T_accountnumber,
+								ID:vm.$data.id,
+								Token:oves_obj.Token,
+								T_accountnumber:vm.$data.Sunmet,
+								nuber:'0'
+							},"inframe");
+							}
+						},
+						outup:function(T_accountnumber,index){
+							vm.$data.Sunmet = vm.$data.items[index];
+							util.openWindow("CRM_Ar_cos.html",{
+								Username:oves_obj.T_accountnumber,
+								T_accountnumber:T_accountnumber,
+								Token:oves_obj.Token
+							},"inframe");
+						},
+						btOne:function(){						
+							vm.$data.rows = 5;
+							vm.$data.page = 1;
+							vm.$data.count = 0;
+							isH = true;
+							intn();
+							pege();
+						}
+					}
+				})		
+		</script>
+		<script>
+		var oves_obj = util.getExreas(null, true);	
+			function intn(){				
+					$.ajax({
+						type: "post", //html.datas.params
+						url: util.Config.url + '/Administrator/SearchUserByUserid',
+						dataType: "json",
+						data: {
+							Username: oves_obj.T_accountnumber,
+							Token: oves_obj.Token,
+							ID: oves_obj.ID,
+							page:vm.$data.page,
+							rows:vm.$data.rows,
+							name:$('#T_name').val()
+						},
+						async: true,
+						success: function(data) {
+							if(data.state == -1) {
+								alert(data.msg);
+								location.href = 'CRM_log.html'
+							} else if(data.state == 1) {
+								extend(vm.$data.itemo, data.data);
+								vm.$data.items = data.data;
+								vm.$data.count = Math.ceil(data.count/vm.$data.rows);
+								Page();
+								isH = false;
+							} else {
+								extend(vm.$data.itemo, data.data);
+								vm.$data.items = data.data;
+								vm.$data.count = Math.ceil(data.count/vm.$data.rows);
+								Page();
+								alert(data.msg);
+							}
+						},
+						error: function(data) {
+							console.log(data)
+						}
+					});
+			}
+			intn();
+			var isH = true;
+			function Page(){
+				if(isH){
+					$(".tcdPageCode").createPage({		
+							pageCount:vm.$data.count,
+							current:vm.$data.page,
+							backFn:function(p){
+					        	vm.$data.page = p;
+					        	intn();
+					        }
+					   });
+					}
+				}
+			function extend(p,c){
+				for(var itemo in c){
+					p[itemo] = c[itemo];
+					}
+				}
+		</script>
+	</body>
+
+</html>

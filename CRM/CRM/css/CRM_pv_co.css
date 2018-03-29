@@ -1,0 +1,89 @@
+.center>.cen_2 {
+    width: 804px;
+    height: 320px;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    background: #e8e8e8;
+    border: 1px solid #a8a8a8;
+}
+.cen_2>ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    height: 290px;
+    width: 360px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+    position: relative;
+}
+.cen_2>ul>li:first-child {
+    margin-top: 10px;
+}
+.cen_2>ul>li {
+    width: 100%;
+    min-height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #666666;
+    position: relative;
+}
+.cen_2>.ul_two>li {
+    width: 100%;
+    height: 83px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666666;
+    position: relative;
+}
+.cen_2>ul>li>textarea {
+    width: 260px;
+    height: 83px;
+    position: absolute;
+}
+.img_ove{
+	width: 30px;
+	height: 25px;
+	margin-left: 15px;
+}
+.tabs>span{
+	color: #3063e5;
+	cursor: pointer;
+}
+.prov{
+	width: 120px;
+}
+#O_fileURL{
+	min-width: 100px;
+	background: #FFFFFF;	
+	border: 1px solid #666666;
+	overflow: hidden;
+}
+.blues{
+	overflow: hidden;
+	position: relative;
+	width: 30px;
+	height: 25px;
+	line-height: 25px;
+}
+#updata{
+	position: relative;
+    width: 70px;
+    height: 25px;
+    right: 655px;
+    top: 12px;
+}
+
+#updata input{
+	opacity: 0;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 100%;
+	bottom: 0px;
+	z-index: 88;
+	background-color: rgba(0,0,0,0);
+	-webkit-opacity: 0;
+}

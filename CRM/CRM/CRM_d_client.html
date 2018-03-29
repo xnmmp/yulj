@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_d_client.css" />
+		<title></title>
+        <style>
+            .cen_2 > ul > li {
+                overflow: hidden;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="center" id="ove_a">
+			<div class="cen_1 ceon">
+				<h1>客户信息<span v-text="zt">{{zt}}</span></h1>
+			</div>
+			<div class="tab">
+				<img src="img/xg.png">
+				<span class="bj" v-on:click='xg'>修改</span>
+			</div>
+			<div class="cen_2">
+				<ul>
+					<li class="li_ove">
+						客户名称：<span>{{item.C_name}}</span>
+					</li>
+					<li>
+						联系电话：<span>{{item.C_linkphone}}</span>
+					</li>
+					<li>
+						联系人员：<span>{{item.C_linkname}}</span>
+					</li>
+					<li>
+						客户类型：
+						<template v-for="option in items.cC_kind">
+						<span v-if='option.value==item.C_kind' v-bind:value='option.value' selected="selected" >
+							{{option.text}}
+						</span>
+						</template>	
+					</li>
+					<li>
+						所属行业：<span>{{item.C_industry}}</span>
+					</li>
+				</ul>
+				<ul>
+					<li class="li_ove">
+						所属区域：<span>{{item.city.provinces.province}} - {{item.city.cities.city}} - {{item.city.areass.area}}</span>
+					</li>
+					<li>
+						详细地址：<span>{{item.C_address}}</span>
+					</li>
+					<li>
+						合作方式：
+						<template v-for="option in items.cC_cooperation">
+						<span v-if='option.value==item.C_cooperation' v-bind:value='option.value' selected="selected" >
+							{{option.text}}
+						</span>
+						</template>	
+					</li>
+					<li>
+						客户规模：
+						<template v-for="option in items.cC_scale">
+						<span v-if='option.value==item.C_scale' v-bind:value='option.value' selected="selected" >
+							{{option.text}}
+						</span>
+						</template>	
+					</li>
+				</ul>
+			</div>
+			<div class="tabs">
+				<button onclick="util.bcak()">返回</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script>
+			var vm = new Vue({
+				el:'#ove_a',
+				data:{
+					item:'',
+					zt:'',
+					items:{
+						cC_kind:[
+							{text:"请选择",value:"0"},
+							{text:"个人",value:"1"},
+							{text:"企业",value:"2"}
+						],
+						cC_cooperation:[
+							{text:"请选择",value:"0"},
+							{text:"临时",value:"1"},
+							{text:"长期",value:"2"},
+							{text:"战略合作",value:"3"}
+						],
+						cC_scale:[
+							{text:"请选择",value:"0"},
+							{text:"小型",value:"1"},
+							{text:"中型",value:"2"},
+							{text:"大型",value:"3"}
+						]
+					},
+					city:''
+				},
+				methods:{
+					xg:function(){
+						util.openWindow("CRM_client_co.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							ID:objs_ove.ID,
+							Sunber:1
+						},"inframe");
+					}
+				}
+			})
+		</script>
+		<script>
+			var objs_ove = util.getExreas();
+			function client(){
+					$.ajax({
+					url:util.Config.url+"/Customer/SearchCustomerAllByID",
+					type:'post',//HTTP请求方式
+					dataType:'json',//规定预期的服务器响应的数据类型
+					async: false,//true表示发送异步请求，false表示发送同步请求
+					cache:true,//true表示从浏览器缓存中加载请求信息，false表示不从浏览器缓存中加载请求信息
+					data:{
+						"Username":objs_ove.Username,
+						"Token":objs_ove.Token,
+						"ID":objs_ove.ID
+					},
+					contentType:"application/x-www-form-urlencoded",//发送信息至服务器时内容编码类型。默认值适合大多数应用场合。
+					success: function(data){//服务器响应成功并返回数据调用该
+						extend(vm.$data.items, data.data);
+						vm.$data.item = data.data;							
+					},
+					error: function(){
+						console.log('error');
+					}
+				})
+			}	
+			function extend(p,c){
+				for(var item in c){
+					p[item] = c[item];
+					}
+				}
+			client();
+		</script>
+		</body>
+</html>

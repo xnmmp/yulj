@@ -1,0 +1,460 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_Ar_co.css" />
+		<title></title>
+		<style>
+			#time{
+				width: 125px;
+			}
+			.span_{
+				color: #FF0000;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>操作员管理</h1>
+			</div>
+			<div class="tab">
+				<span class="img_s">带<span class="red">*</span>号为必填</span>
+				<span class="img_">状态：</span><span class="zt" v-text="Sunmet">{{Sunmet}}</span>
+			</div>
+			<div class="ove_1">
+				<div class="div_1">
+				<div>员工工号：<input type="text" class="inputMaxs" maxlength="12" class="ras" minlength="6" id="job" v-model="items.T_jobnumber"/><span class="red">*</span></div>
+				<div>账号：<input type="text" id="name" class="ras" maxlength="12" minlength="6" v-model="items.T_accountnumber" /><span class="red">*</span></div>
+				</div>
+				<div class="div_2">
+					<div id="ppop"><span class="ppop" style="font-size: 14px;color: #333333;">登陆密码：</span><input type="text" maxlength="12" minlength="3" class="inputMax" id="pwd" maxlength='16' v-model="items.T_pwd"/><span class="red ras">*</span></div>
+					<div>角色：
+						<select id="province" class="pr_ove">
+							{{{'cT_role'|options}}}
+						</select>
+						<span class="red">*</span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="oves_1">
+				<ul>
+					<li>姓名：<input type="text" id="Namesen" v-model="items.T_name"/><span class="red">*</span></li>
+					<li>出生年月：<input type="text" id="Max" maxlength="4" class="pr_ove inputMax" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"/>年<input type="text" id="Min" maxlength="2" class="pr_ove inputMax" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"/>月
+					<span class="span_"></span>
+					</li>
+					<li id="Sex">性别：
+						<input type="radio" v-model="items.T_Sex" name="Six" value="男"/>男
+						<input type="radio" v-model="items.T_Sex" name="Six" value="女"/>女
+					</li>
+					<li>籍贯：<input type="text" class="input_ove" v-model="items.T_nativeplace"/>
+					</li>
+					<li>部门：<input type="text" class="input_ove" v-model="items.T_demartment"/>
+						
+					</li>
+					<li>职务：<input type="text" class="input_ove" v-model="items.T_duct"/></li>
+					<li>手机：
+						<input type="text" id="Ptime" class="input_ove" v-model="items.T_phone"/>
+						<span class="span_"></span>
+					</li>
+					<li>入职时间：
+						<input type="text" id="time" v-model="items.T_Entrytime"/>
+						<span id="times" class="span_" >格式如：1900-01-02</span>
+					</li>
+					
+				</ul>
+				
+				<ul>
+					<li class="li_st">
+						<span class="blues">
+							<form id="updata" >
+								<input type="file" id="upload" name="show" onchange="showPreview(this)"/>
+							</form>
+							上传头像
+						</span>
+						<input id="O_fileURL" class="right" disabled="disabled"></input>
+						<img src="img/zp.png" id="portrait" class="img_ot img_" />
+					</li>
+					<li>现居住地址：<input type="text" class="input_ove" v-model="items.T_Nowhous"/></li>
+					<li class="dce">身份证号：<input type="text" class="input_ove" v-model="items.T_IDcard"/></li>
+				</ul>
+			</div>
+			<div class="tabs">
+				<button v-on:click='fhui()'>返回</button>
+				<button v-on:click="outs" class="popo">确定</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/jquery-form.js" ></script>
+		<script>
+			var vm = new Vue({
+				el: '#ul_ove',
+				data: {
+						items:{
+							T_jobnumber:"",	
+							T_accountnumber:"",
+							T_pwd:"",
+							T_role:"",
+							T_name:"",
+							T_Birth1:"",
+							T_Birth2:"",
+							T_Sex:"",
+							T_nativeplace:"",
+							T_demartment:"",
+							T_duct:"",
+							T_phone:"",
+							T_Entrytime:"",
+							T_Nowhous:"",
+							T_IDcard:""
+						},						
+						Sunmet: '',
+						item:{
+							cT_role:[
+							{text:"请选择",value:"0"},
+							{text:"总经理",value:"2"},
+							{text:"员工",value:"3"}
+						]
+						},
+						img_:"",
+						Sunbe:'',
+						Sunbe1:'',
+						Sunbe2:'',
+						Sunbe3:'',
+						id:'',
+						Sunb:''
+					},
+				methods: {
+					outs:function(){
+						if(objs_ove.nuber == 1){
+							init();							
+						}else{
+							inits();
+							
+						}
+					},
+					fhui:function(){
+						util.bcak();
+					}
+				},
+				filters:{
+					options:function(val){
+						var itemKey = val.substring(1,val.length);
+						var data = this.$data.item[val];
+						var returns = [];
+						for(var i=0;i<data.length;i++){
+							var option_ = document.createElement("option");
+							option_.innerText = data[i].text;
+							option_.value = data[i].value;
+							if(data[i].value==this.items[itemKey]){
+								option_.setAttribute("selected",true);
+							}
+							returns.push(option_.outerHTML);
+						}
+						return returns.join("");
+					}
+				}
+			})			
+		</script>
+		<script>
+				var objs_ove = util.getExreas();
+				if(objs_ove.nuber == 1){					
+					vm.$data.Sunmet = "新增";
+					url();
+					Pduan();
+				}else{
+					vm.$data.Sunmet = "修改";
+					$('.ppop').text('输入新密码：');
+					$('.ras').text('')
+					init_ove();					
+					url();
+					Pduan();
+				}
+				if (objs_ove.role == 2) {
+				    $('#province>option')[1].setAttribute('class', 'role');
+				    $('.role').css('display', 'none')
+				}
+
+				//添加
+			function init(){
+					if(vm.$data.Sunb == 1 ||vm.$data.Sunbe == 1 || vm.$data.Sunbe1 == 1 ||vm.$data.Sunbe2 == 1 ||vm.$data.Sunbe3 == 1 || vm.$data.items.T_accountnumber == ''||vm.$data.items.T_jobnumber == ''||
+					vm.$data.items.T_pwd == ''||$('#province').val() == 0||
+					vm.$data.items.T_name == ''){
+						alert('必要信息未填写完整,且请检查是否输入正确！');
+						return;
+					}else{
+						$.ajax({
+						type: "post", //html.datas.params
+						url: util.Config.url + '/Administrator/Addson',
+						dataType: "json",
+						data: {
+							"Username":objs_ove.Username,
+							"Token":objs_ove.Token,
+							"UserID":objs_ove.UserID,
+							"name":vm.$data.items.T_name,
+							"demartment":vm.$data.items.T_demartment,
+							"duct":vm.$data.items.T_duct,
+							"phone":vm.$data.items.T_phone,
+							"jobnumber":vm.$data.items.T_jobnumber,
+							"accountnumber":vm.$data.items.T_accountnumber,
+							"pwd":vm.$data.items.T_pwd,
+							"role":$('#province').val(),						
+							"Birth1":$('#Max').val(),
+							"Birth2":$('#Min').val(),
+							"Sex":vm.$data.items.T_Sex,
+							"nativeplace":vm.$data.items.T_nativeplace,
+							"Entrytime":vm.$data.items.T_Entrytime,
+							"Nowhous":vm.$data.items.T_Nowhous,
+							"photoUrl":vm.$data.img_.ID,
+							"IDcard":vm.$data.items.T_IDcard
+						},
+						async: true,
+						success: function(data) {
+							if(data.state == -1){
+								alert(data.msg);
+								location.href = "CRM_log.html";
+							}else if(data.state == 1){
+								alert(data.msg);
+								window.location.href = 'CRM_Ar.html';							
+							}else{
+								alert(data.msg);
+							}
+						},
+						error: function(data) {
+							console.log(data)
+						}
+					});
+				}					
+			}
+			function init_ove(){
+				$.ajax({
+				url:util.Config.url+'/Administrator/SearchUserByUseridinfor',
+				datatype:"JSON",
+				type:"POST",
+				contentType:"application/x-www-form-urlencoded",//发送信息至服务器时内容编码类型。默认值适合大多数应用场合。
+				data:{
+					"Username":objs_ove.Username,
+					"Token":objs_ove.Token,
+					"T_accountnumber":objs_ove.T_accountnumber
+				},
+				success:function(data){
+					if(data.state == 2){
+							alert(data.msg)
+					}else if(data.state == 1){																				
+							extend(vm.$data.item,data.data);
+							vm.$data.items = data.data;	
+							if(data.data.T_Birth == '.'){
+								vm.$data.items.T_Birth = ''
+							} else if (data.data.T_Birth == '.undefined') {
+							    vm.$data.items.T_Birth = '';
+							} else {
+							var time = data.data.T_Birth;
+							$('#Max').val(time.slice(0,4));
+							$('#Min').val(time.slice(5));
+							}
+							if(data.data.T_photoUrl.data == null){
+								return;
+							}else{
+							$('#O_fileURL').show();
+							var data_op = data.data.T_photoUrl.data[0];
+							$('#O_fileURL').val(data_op.Name);
+							$('.img_ot')[0].src = data_op.Url;							
+							vm.$data.id = data_op.ID;
+							}
+						}else if(data.state == -1){
+							alert(data.msg);
+							location.href = "CRM_log.html";
+						}
+				},
+				error:function(){
+					console.log('error');
+				}
+			})
+			}
+			function extend(p,c){
+				for(var items in c){
+					p[items] = c[items];
+				}
+			}
+			//修改
+			function inits(){
+				if(vm.$data.items.T_accountnumber.length == ''||vm.$data.items.T_jobnumber.length == ''||$('#province').val() == 0||
+					vm.$data.items.T_name.length == ''){
+						alert('必要信息未填写完整！');
+						return;
+					}else{
+					$.ajax({
+						type: "post", //html.datas.params
+						url: util.Config.url + '/Administrator/UpdataSoninfor',
+						dataType: "json",
+						data: {
+							"Username":objs_ove.Username,
+							"Token":objs_ove.Token,
+							"ID":objs_ove.ID,
+							"T_name":vm.$data.items.T_name,
+							"T_demartment":vm.$data.items.T_demartment,
+							"T_duct":vm.$data.items.T_duct,
+							"T_phone":vm.$data.items.T_phone,
+							"T_jobnumber":vm.$data.items.T_jobnumber,
+							"T_account":vm.$data.items.T_accountnumber,
+							"T_pwd":vm.$data.items.T_pwd,
+							"T_role":$('#province').val(),						
+							"T_Birth1":$('#Max').val(),
+							"T_Birth2":$('#Min').val(),
+							"T_Sex":vm.$data.items.T_Sex,
+							"T_nativeplace":vm.$data.items.T_nativeplace,
+							"T_Entrytime":vm.$data.items.T_Entrytime,
+							"T_Nowhous":vm.$data.items.T_Nowhous,
+							"T_photoUrl":vm.$data.id,
+							"T_IDcard":vm.$data.items.T_IDcard
+						},
+						async: true,
+						success: function(data) {
+							if(data.state == -1||data.state == -2){
+								alert(data.msg);
+								location.href = "CRM_log.html";
+							}else if(data.state == 1){
+								alert(data.msg);
+								window.location.href = 'CRM_Ar.html';
+							}else{
+								alert(data.msg);
+							}
+						},
+						error: function(data) {
+							console.log(data)
+						}
+					});
+				}
+			}
+			function showPreview(source) {
+				  var file = source.files[0];
+				  if(window.FileReader) {
+				      var fr = new FileReader();
+				      fr.onloadend = function(e) {
+				        document.getElementById("portrait").src = e.target.result;
+				      };
+				      fr.readAsDataURL(file);				       
+				  }
+				}
+			function url(){
+				$('#O_fileURL').hide();
+			var op = {
+			    	Token:objs_ove.Token,
+			    	Username:objs_ove.Username
+			  	};
+				$("#upload").on("change",function(){					
+					var options = {
+					url: "http://www.shiguanja.com/ERP_CRMLoad/PicPunlicSS",
+			        type: "POST",
+			        data:op,
+			        dataType: "json",
+			        success: function (data) {			        	
+			            vm.$data.img_ = data.data;
+			            vm.$data.id = data.data.ID;
+				            if(data.state == 1){
+				            	$('#O_fileURL').show();
+				            	$('#O_fileURL').val(vm.$data.img_.Name);
+				            }
+			        },
+			        error: function () {
+			            alert("网络错误！");
+			        }
+				    }
+				    $("#updata").ajaxSubmit(options);
+				  })
+			}
+			function Pduan(){							
+	             $('#job').on('blur',function(){
+	            	var Mi = $(this).val();
+	            	var Max = /^([a-zA-Z0-9]+)$/;
+	            	if (!Max.test(Mi)) { 
+						$(this).siblings('.red').text('错误，中文字符！').css('color','#FF0000');
+						vm.$data.Sunb = 1;
+						return; 
+						} else{
+						$(this).siblings('.red').text('√').css('color','#008000');
+						vm.$data.Sunb = 0;
+						return; 
+						} 
+	            	})
+	             $('#name').on('blur', function () {
+	                 var Mi = $(this).val();
+	                 var Max = /^[^\u4e00-\u9fa5]{0,}$/;
+	                 if (!Max.test(Mi)) {
+	                     $(this).siblings('.red').text('错误，中文字符！').css('color', '#FF0000');
+	                     vm.$data.Sunbe = 1;
+	                     return;
+	                 } else if (Mi.length < 4 && Mi.length != 4) {
+	                     $(this).siblings('.red').text('账号要大于4位！').css('color', '#FF0000');
+	                     vm.$data.Sunbe = 1;
+	                     return;
+	                 } else {
+	                     $(this).siblings('.red').text('√').css('color', '#008000');
+	                     vm.$data.Sunbe = 0;
+	                     return;
+	                 }
+	             })
+	             $('#pwd').on('blur', function () {
+	                 var Mi = $(this).val();
+	                 var Max = /^[^\u4e00-\u9fa5]{0,}$/;
+	                 if (!Max.test(Mi)) {
+	                     $(this).siblings('.ras').text('错误，中文字符！').css('color', '#FF0000');
+	                     vm.$data.Sunbe1 = 1;
+	                     return;
+	                 } else if (Mi.length < 4 && Mi.length != 4) {
+	                     $(this).siblings('.ras').text('密码要大于4位！').css('color', '#FF0000');
+	                     vm.$data.Sunbe1 = 1;
+	                     return;
+	                 } else {
+	                     $(this).siblings('.ras').text('√').css('color', '#008000');
+	                     vm.$data.Sunbe1 = 0;
+	                     return;
+	                 }
+	             })
+		            $('#time').on('blur',function(){
+		            	var Mi = $(this).val();
+		            	var Min =  /^((?:19|20)\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
+		            	if(Mi.length == 0){
+								vm.$data.Sunbe2 = 0;
+								return; 
+							} else {
+			            		if (!Min.test(Mi)) {  
+								$(this).siblings('.span_').text('格式不正确,如：1900-01-02').css('color','#FF0000');
+								vm.$data.Sunbe2 = 1;
+								}else {
+								$(this).siblings('.span_').text('√').css('color','#008000');
+								vm.$data.Sunbe2 = 0;
+								return; 
+								}
+							}
+		            	})
+		            $('#Ptime').on('blur',function(){
+		            	var Mi = $(this).val();
+		            	var Min =  /^1\d{10}$/;
+		            		if(Mi.length == 0){
+								vm.$data.Sunbe3 = 0;
+								return; 
+							} else {
+			            		if (!Min.test(Mi)) { 
+								$(this).siblings('.span_').text("请输入11位手机号码!").css('color','#FF0000');
+								vm.$data.Sunbe3 = 1;
+								return; 
+								} else {
+								$(this).siblings('.span_').text('√').css('color','#008000');
+								vm.$data.Sunbe3 = 0;
+								return; 
+								}
+							}
+		            	})
+		            $('#Sex>input').on('click',function(){
+		            	vm.$data.items.T_Sex = $(this).val();
+		            	
+		            })
+			}
+		</script>
+	</body>
+</html>

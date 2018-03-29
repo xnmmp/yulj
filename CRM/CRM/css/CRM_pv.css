@@ -1,0 +1,189 @@
+
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+.timeInput {
+    width: 105px;
+    height: 25px;
+    padding-left: 5px;
+    border: 1px solid #dcdee1;
+    background: url(../img/time_icon.png) no-repeat 85px center,#fff;
+}
+
+.center {
+    position: relative;
+    width: 100%;
+    /*min-height: 500px;*/
+   	height: 100%;
+   	background: url(../img/bj1.png);
+}
+.center>.cen_1 {
+    width: 100%;
+    position: relative;
+    min-height: 59px;
+    background: url(../img/bj1.png);
+}
+.center>.cen_2{
+	margin-top:20px;
+	background: url(../img/bj1.png);
+}
+.center>.cen_1>h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    margin-left: 20px;
+    height: 26px;
+    line-height: 30px;
+}
+.tab {
+    height: 28px;
+    line-height: 28px;
+    width: 100%;
+    background: url(../img/bj1.png);
+    right: 80px;
+    color: #2577d4;
+    cursor: pointer;
+}
+.cen_2>.cen_ul1 {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    margin-top: 0;
+    list-style: none;
+    width: 100%;
+    height: 38px;
+    background: #7791a5;
+}
+.cen_2>.cen_ul1>li {
+    color: #FFFFFF;
+    float: left;
+    height: 38px;
+    line-height: 38px;
+    width: 190px;
+     margin-left: 10px;
+}
+.cen_2>.cen_ul2 {
+    list-style: none;
+    width: 100%;
+    height: 24px;
+    margin-top: 30px;
+    background: rgba(189,205,222,0.37);
+   /*background: url(../img/00.png);*/
+    position: relative;
+    padding: 0;
+   
+}
+.cen_2>.cen_ul2>li {
+    color: #444444;
+    float: left;
+    font-size: 14px;
+    height: 24px;
+    overflow: hidden;
+    line-height: 24px;
+    width: 190px;
+    margin-left: 10px;
+}
+.cen_2>.cen_ul2>li:last-child{
+	width: 100px;
+}
+.cen_2>.cen_ul1>li:last-child{
+	width: 100px;
+}
+.cen_2>.cen_ul1>:first-child{
+	width: 100px;
+}
+.cen_2>.cen_ul2>:first-child{
+	width: 100px;
+}
+.cen_2>.cen_ul2>li:nth-child(4){
+	width: 170px;	
+}
+.cen_2>.cen_ul1>li:nth-child(4){
+	width: 170px;	
+}
+.hidden-input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+input[type=radio]+span {
+    /* your style goes here */
+    display: inline-block;
+    height: 0.75em;
+    width: 0.75em;
+    border-radius: 4px; 
+    background-color: #DEDEDE;
+    border: 1px solid #A5A5A5;        
+}
+
+/* active style goes here */
+input[type=radio]:checked+span {	  
+    background:url(../img/gou.png);
+}
+.cen_2>.cen_ul2>li>span{
+	color: #3A6C92;
+	cursor: pointer;
+}
+.tab>.img_ {
+    position: relative;
+    top: 5px;
+    margin-left: 750px;
+}
+.center>.cen_1>ul {
+    width: 803px;
+    position: relative;
+    right: 0px;
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+    border: 1px solid #a9b3be;
+    list-style: none;
+    background: -webkit-linear-gradient(#bdd1fd, #e8eefe);
+    background: -o-linear-gradient(#bdd1fd, #e8eefe);
+    background: -moz-linear-gradient(#bdd1fd, #e8eefe);
+    background: linear-gradient(#bdd1fd, #e8eefe);
+}
+.center>.cen_1>ul>li {
+    width: 100%;
+    position: relative;
+    height: 40px;
+    padding-top: 10px;
+}
+.text_ove {
+    width: 173px;
+    height: 20px;
+}
+.center>.cen_1>ul>li>button {
+    width: 111px;
+    height: 30px;
+    background: #3a6c92;
+    color: #FFFFFF;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 0;
+    display: block;
+    position: absolute;
+    right: 135px;
+    top: 60px;
+}
+.center>.cen_1>ul>li>span {
+    font-size: 14px;
+}
+.span_text {
+    margin-left: 90px;
+}
+.box{
+	width: 100%;
+	height: 40px;
+	position: relative;
+}
+/*分页*/
+a{ text-decoration:none;}
+a:hover{ text-decoration:none;}
+.tcdPageCode{position: absolute;text-align: left;color: #ccc;padding: 0;left: 50%;transform: translateX(-50%);-webkit-transform: translateX(-50%);}
+.tcdPageCode a{display: inline-block;color: #428bca;display: inline-block;height: 22px;margin: 0 2px;line-height: 22px;	padding: 0 8px;border: 1px solid #ddd;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;}
+.tcdPageCode span.current{display: inline-block;height: 22px;line-height: 22px;margin: 0 2px;padding: 0 8px;color: #fff;background-color: #428bca;	border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode span.disabled{display: inline-block;height: 22px;line-height: 22px;padding: 0 8px;margin: 0 2px;color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}

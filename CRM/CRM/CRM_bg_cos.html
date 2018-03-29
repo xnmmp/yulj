@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_bg_co.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>签单合同</h1>
+			</div>
+			<div class="tab">
+				<span class="img_s">状态：</span><span class="zt">修改</span>
+			</div>
+			<div class="cen_2">
+				<div class="cen_2s">
+					<ul>
+						<li id="ychan">签单日期：
+							<input id="P_datetime" class="inputMaxs" type="text" v-model="items.P_datetime" disabled="disabled"/>
+							<span class="span_" >格式1995-01-01</span>
+						</li>
+						<li>合同名称：
+							<input type="text" id="P_name" maxlength="8" v-model="items.P_name"/>
+						</li>
+						<li>合同签订人：<input type="text" id="P_cookiename" maxlength="8" v-model="items.P_cookiename"/></li>
+						<li class="li_ove_vr">
+							合同类型:
+							<select id="P_kindone" class="provinces" v-on:click="ove_se">
+							{{{'cP_kindone'|options}}}						
+							</select>
+							<select id="P_kindtwo" class="provinces" v-on:click="two_se">
+							{{{'cP_kindtwo'|options}}}		
+							</select>
+							<img src="img/gt.png" />						
+						</li>
+					</ul>
+					<ul>
+						<li>开始日期：
+							<input type="text" id="P_startdatetime" class="input_ove inputMaxs" v-model="items.P_startdatetime"/>
+							
+						</li>
+						<li>结束日期：
+							<input type="text" id="P_enddatetime" class="inputMaxs" v-model="items.P_enddatetime"/>
+							
+						</li>
+						<li>商机日期：
+							<input type="text" disabled="disabled" v-model="items.remark1" value="items.remark1"/>
+						</li>
+						<li>合同金额：
+							<input type="text" class="inputMax" id="P_money" maxlength="10" v-model="items.P_money"/>
+						</li>
+					</ul>
+				</div>
+				<div class="cen_3" >
+				<div class="ove" id="tallshow">
+					<img src="img/wjjia.png" class="img_ove"/>
+						<span class="fan">上传甲方签单合同文件</span>
+						<img src="img/sc.png" class="img_two"/>
+						<span class="blues">
+							<form id="updata">
+								<input type="file" id="upload" name="show"/>
+							</form>
+							上传
+						</span>
+                        <span id="O_fileURL" class="spa" />{{img_.Name}}</span>
+                        <img src="img/x.png" class="imgfe" v-on:click="sc(img_.ID,$index)" />											
+						<span class="span_ pop"></span>
+				</div>
+				<div class="tabs">
+				<button onclick="util.bcak()">返回</button>
+				<button v-on:click="qd()" class="qd">确定</button>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_bg_ifrem.js" ></script>
+		<script type="text/javascript" src="js/jquery-form.js" ></script>
+        <script type="text/javascript" src="js/updata.js"></script>
+        <script type="text/javascript" src="js/Remove.js"></script>
+		<script>
+			var vm = new Vue({
+				el:'#ul_ove',
+				data:{
+					item:{
+						cP_kindone:[
+							{text:"请选择",value:"0"},
+							{text:"服务保养",value:"1"},
+							{text:"工程项目",value:"2"}
+						],
+						cP_kindtwo:[
+							{text:"请选择",value:"0"},
+							{text:"闭口合同",value:"1"},
+							{text:"开口合同",value:"2"}
+						],
+						cP_kindthree:[
+							{text:"请选择",value:"0"},
+							{text:"合作",value:"1"},
+							{text:"自建",value:"2"}
+						]
+					},
+					items:{},
+					bt:'',
+					itemst:'',
+					img_:"",
+					id:'',
+					Name:[],
+					Names:'',
+					state:0,
+					img_s:[],
+					Sunber:1,
+					color1:'',
+					color2:''
+				},
+				methods:{
+					ove_se:function(e){								
+								
+					},
+					two_se:function(e){
+								if(vm.$data.Sunber==2){
+									$("#P_kindtwo option:first").remove();
+									
+									vm.$data.Sunber++;
+									$("#P_kindthree").removeAttr("disabled");
+								}else{
+									return;
+								}
+					},
+					qd:function(){
+						if(objs_two.Sunber==2){
+							bg_ifrem_san1();
+							
+						}else{
+							bg_ifrem_san();	
+						}																								
+					},
+					span_:function(id,index){
+							vm.$data.id = id;
+							pdatas();															
+					},
+					sc: function (id, index) {
+					    if (confirm('确定删除重新上传？')) {
+					        vm.$data.id = id;
+					        pdata();
+					    } else {
+
+					    }
+					}
+
+				},
+				filters:{
+					options:function(val){
+						var itemKey = val.substring(1,val.length);
+						var data = this.$data.item[val];
+						var returns = [];
+						for(var i=0;i<data.length;i++){
+							var option_ = document.createElement("option");
+							option_.innerText = data[i].text;
+							option_.value = data[i].value;
+							if(data[i].value==this.items[itemKey]){
+								option_.setAttribute("selected",true);
+							}
+							returns.push(option_.outerHTML);
+						}
+						return returns.join("");
+					}
+				}
+			})			
+			var objs_two = util.getExreas();
+			if (objs_two.Sunber == 2) {
+			    vm.$data.items.remark1 = objs_two.remark1;
+			    $('#IDs').removeAttr('disabled');
+			    $('.zt').text('添加');
+			    $('#O_fileURL').hide();
+			    $('#P_datetime').removeAttr('disabled');
+			    $('#tallshow').hide();
+			    $('.imgfe').hide();
+			    $('#ychan').css('display', 'none');
+			    $('#P_kindtwo').on('change', function () {
+			        if ($(this).val() == 0) {
+			            $('#tallshow').hide();
+			        } else {
+			            $('#tallshow').show();
+			        }
+			    })
+			} else {
+			    bg_ifrem_two();
+			    $('.inputMaxs').siblings('.span_').text('');
+			    $('#ychan').css('display', 'inline-block');
+
+			}
+		</script>
+		<script>		
+				$('.li_ove_vr>img').on('mouseover',function(){
+					$(this).after('<div class="jies"><ul><li>1.闭口合同：指明确合同总金额以及合同结束日期</li><li>2.开口合同：指不能明确合同总金额以及合同结束日期</li></ul></div>');
+					$(this).after('<span class="item dot-left"></span>');
+				}).on('mouseout',function(){
+					$('.jies').remove();
+					$('.dot-left').remove();
+				})
+				var a = 1;
+				$('#P_kindone').on('change',function(){																
+						if(a==1){
+							alert('在您点击选择之前请将鼠标移动到旁边的图标上查看操作细节!');
+							$(".pr_ove option:first").remove();
+							a++;
+						}else{
+							return;
+					}									
+				})		
+				
+		</script>	
+	</body>
+</html>

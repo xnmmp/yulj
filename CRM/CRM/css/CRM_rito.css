@@ -1,0 +1,134 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+.center {
+    position: relative;
+    width: 100%;
+    /*min-height: 500px;*/
+   	height: 100%;
+   	background: url(../img/bj1.png);
+}
+.center>.cen_1 {
+    width: 100%;
+    min-height: 59px;
+    background: url(../img/bj1.png);
+}
+.center>.cen_2{
+	margin-top: 20px;
+	background: url(../img/bj1.png);
+}
+.center>.cen_1>h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    margin-left: 20px;
+    height: 26px;
+    line-height: 30px;
+}
+.tab {
+    height: 28px;
+    line-height: 28px;
+    width: 100%;
+    background: url(../img/bj1.png);
+    right: 80px;
+    color: #2577d4;
+    cursor: pointer;
+}
+.img_t{
+	width: 30px;
+	height: 30px;
+	border: 1px solid;
+	position: relative;
+	top: 10px;
+}
+.img_ot{
+width: 30px;
+	height: 30px;
+	border: 1px solid;
+	position: relative;
+	top: 10px;
+}
+.tabs>.qds{
+	background: #666666;
+	cursor: progress;
+}
+.tab>.img_ {
+    position: relative;
+    top: 5px;
+    margin-left: 750px;
+}
+.tab>.img_s{
+	position: relative;
+    top: 5px;
+    margin-left: 720px;
+}
+.tabs {
+    width: 804px;
+    height: 60px;
+    margin-top: 10px;
+    position: relative;
+    height: 28px;
+}
+.tabs>button {
+    width: 78px;
+    border: 0;
+    height: 28px;
+    line-height: 18px;
+    background: #3a6c92;
+    color: #FFFFFF;
+    padding: 0;
+   	float: right;
+   	margin-left: 20px;
+    right: 40px;
+}
+.cen_2>.li_show>.img_ {
+    margin-left: 380px;
+}
+.cen_2>.li_show>span {
+    color: #2E7BCA;
+    height: 26px;
+    width: 25px;
+    position: relative;
+    bottom: 6px;
+    margin-left: 10px;
+    margin-left: 0;
+    line-height: 26px;
+}
+.cen_2>.li_show {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    font-size：0;
+	cursor: pointer;
+}
+.blues{
+	overflow: hidden;
+	position: relative;
+	width: 30px;
+	height: 25px;
+	line-height: 25px;
+}
+#updata{
+	float: right;
+	position: relative;
+	width: 40px;
+	height: 25px;
+	right: 130px;
+	top: 17px;
+}
+
+#updata input{
+	opacity: 0;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 30px;
+	bottom: 0px;
+	z-index: 88;
+	background-color: rgba(0,0,0,0);
+	-webkit-opacity: 0;
+}

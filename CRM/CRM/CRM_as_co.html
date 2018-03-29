@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_as_co.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>需求评估查看</h1>
+			</div>
+			<div class="div_div_1">
+				<div class="div_div_s" style="border-bottom: 1px solid #b3b3b3;">
+				<ul>
+					<li>工期要求：
+						<template v-for="option in items.cA_durationneed">
+						<span v-if='option.value==item.A_durationneed' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>验收要求：
+						<template v-for="option in items.cA_acceptanceneed">
+						<span v-if='option.value==item.A_acceptanceneed' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>施工要求：
+						<template v-for="option in items.cA_constructneed">
+						<span v-if='option.value==item.A_constructneed' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>违约赔偿：
+						<template v-for="option in items.cA_defaultmakeup">
+						<span v-if='option.value==item.A_defaultmakeup' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li style="color: red;">商机质量：
+						<span id="A_businessmass" v-model="item.A_businessmass">{{item.A_businessmass}}</span>
+					</li>
+				</ul>
+				<ul>
+					<li>客户资质：
+						<template v-for="option in items.cA_aptitudes">
+						<span v-if='option.value==item.A_aptitudes' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>项目规模：
+						<template v-for="option in items.cA_projectscale">
+						<span v-if='option.value==item.A_projectscale' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>资金回笼：
+						<template v-for="option in items.cA_fundsbackfront">
+						<span v-if='option.value==item.A_fundsbackfront' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>项目预算：
+						<template v-for="option in items.cA_budget">
+						<span v-if='option.value==item.A_budget' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+				</ul>
+				</div>
+				<div class="div_div_s">
+				<ul>
+					<li>回扣要求：
+						<template v-for="option in items.cA_kickbackneed">
+						<span v-if='option.value==item.A_kickbackneed' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+						
+					</li>
+					<li>项目阻力：
+						<template v-for="option in items.cA_projectdrag">
+						<span v-if='option.value==item.A_projectdrag' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+						
+					</li>
+					<li>竞争对手：
+						<template v-for="option in items.cA_compete">
+						<span v-if='option.value==item.A_compete' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li style="color: red;">成单率：<span id="A_overorder" v-model="item.A_overorder">{{item.A_overorder}}</span></li>
+					<li>评估结论：
+						<template v-for="option in items.cA_conclusion">
+						<span v-if='option.value==item.A_conclusion' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+				</ul>
+				<ul>
+					<li>客户关注点：
+						<template v-for="option in items.cA_consumerFocus">
+						<span v-if='option.value==item.A_consumerFocus' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>客户关键人关系：
+						<template v-for="option in items.cA_consumerkey">
+						<span v-if='option.value==item.A_consumerkey' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>竞争力：
+						<template v-for="option in items.cA_competitiveness">
+						<span v-if='option.value==item.A_competitiveness' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+				</ul>
+				</div>	
+				<div class="li_uts">			
+				<button class="out" onclick="util.bcak()">返回</button>
+				</div>
+			</div>			
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_as_ifrem.js" ></script>
+		<!--<script type="text/javascript" src="js/CRM_switch.js" ></script>-->
+		<script>
+			var vm = new Vue({
+				el:'#ul_ove',
+				data:{
+					items:{
+					    cA_durationneed: [
+							{ text: "宽松", value: "5" },
+							{ text: "严格", value: "3" },
+							{ text: "苛刻", value: "0" }
+					    ],
+					    cA_constructneed: [
+							{ text: "宽松", value: "5" },
+							{ text: "严格", value: "3" },
+							{ text: "苛刻", value: "0" }
+					    ],
+					    cA_acceptanceneed: [
+							{ text: "宽松", value: "5" },
+							{ text: "严格", value: "3" },
+							{ text: "苛刻", value: "0" }
+					    ],
+					    cA_defaultmakeup: [
+							{ text: "无", value: "1" },
+							{ text: "宽松", value: "5" },
+							{ text: "严格", value: "3" },
+							{ text: "苛刻", value: "0" }
+					    ],
+					    cA_aptitudes: [
+							{ text: "没有实力", value: "0" },
+							{ text: "一般", value: "10" },
+							{ text: "有实力", value: "20" }
+					    ],
+					    cA_fundsbackfront: [
+							{ text: "快", value: "20" },
+							{ text: "账期一个月内", value: "10" },
+							{ text: "慢", value: "0" }
+					    ],
+					    cA_projectscale: [
+							{ text: "超大型", value: "20" },
+							{ text: "大型", value: "15" },
+							{ text: "中型", value: "10" },
+							{ text: "小型", value: "5" }
+					    ],
+					    cA_budget: [
+							{ text: "<1万", value: "5" },
+							{ text: "1万-5万", value: "10" },
+							{ text: "5-10", value: "15" },
+							{ text: ">10", value: "20" }
+					    ],
+					    cA_businessmass: '',
+					    cA_compete: [
+							{ text: "无", value: "20" },
+							{ text: "不清楚", value: "10" },
+							{ text: "不强", value: "15" },
+							{ text: "强", value: "0" }
+					    ],
+					    cA_consumerkey: [
+							{ text: "没有", value: "0" },
+							{ text: "一点", value: "5" },
+							{ text: "可以", value: "15" },
+							{ text: "搞定", value: "25" }
+					    ],
+					    cA_kickbackneed: [
+							{ text: "没有", value: "0" },
+							{ text: "有", value: "5" }
+					    ],
+					    cA_consumerFocus: [
+							{ text: "价格", value: "5" },
+							{ text: "质量", value: "9" },
+							{ text: "品牌", value: "13" },
+							{ text: "性价比", value: "15" }
+					    ],
+					    cA_competitiveness: [
+							{ text: "弱", value: "5" },
+							{ text: "一般", value: "10" },
+							{ text: "强", value: "25" }
+					    ],
+					    cA_projectdrag: [
+							{ text: "无", value: "10" },
+							{ text: "有", value: "2" }
+					    ],
+					    cA_overorder: '',
+					    cA_conclusion: [
+							{ text: "请选择", value: "0" },
+							{ text: "放弃", value: "1" },
+							{ text: "普通商机", value: "2" },
+							{ text: "重点商机", value: "3" },
+							{ text: "鸭子商机", value: "4" }
+					    ]
+					},
+					item:'',
+					itemnt:'',
+					Sunber:{
+						A_businessmass:'',
+						A_overorder:''
+					}
+				}
+			})
+			as_flitrate_ove();	
+			function extend(p,c){
+					for(var item in c){
+						p[item] = c[item];
+					}
+				}
+//			numberst();
+	</script>
+	</body>
+</html>

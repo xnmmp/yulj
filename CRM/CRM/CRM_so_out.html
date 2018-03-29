@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_so_co.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="ove_a">
+			<div class="cen_1 ceon">
+				<h1>商机派单<span class="zt"></span></h1>
+			</div>
+			<div class="tab">
+				<span class="img_">状态：</span><span class="zt"></span>
+			</div>
+			<div class="cen_2">
+				<ul>
+					<li class="li_ove">
+						客户名称：<span>{{items.C_name}}</span>
+					</li>
+					<li>
+                        派单人：<span>{{items.B_remark1}}</span>
+					</li>
+					<li id="three">
+						跟单人：
+						<select id="province" class="provinces prov">
+						<option value="0">请选择</option>
+						</select>
+					</li>
+					
+				</ul>
+				<ul>
+					<li class="li_ove">
+						商机名称：<span>{{items.B_name}}</span>
+					</li>
+					<li>
+						跟单人职责：<textarea v-model="items.B_documentaryneed"></textarea>
+					</li>
+				</ul>
+			</div>
+			<div class="tabs">
+				<button v-on:click='out' onclick="util.bcak()">返回</button>
+				<button v-on:click="ok">确定</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_sjpaidan_ifrem.js" ></script>
+		<script>
+			var vm =new Vue({
+				el:'#ove_a',
+				data:{
+					items:'',
+					zt:'',
+					name:''
+				},
+				methods:{
+					ok:function(){
+						so_filtrate_ove();
+					}
+				}
+			})
+			so_filtrate_oves();
+			so_out();
+		</script>
+		
+	</body>
+</html>

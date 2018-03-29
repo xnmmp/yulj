@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_filtrate.css" />
+		<title>商机筛选</title>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>筛选列表</h1>
+				<ul id="time">
+					<li>
+						<span class="span_text">商机名称:</span><input type="text" id="B_name" class="text_ove two" />
+						<span class="span_texts">筛选结果:</span>
+						<select id="province" class="provinces">
+						<option value="">请选择</option>
+						<option value="1">派单</option>
+						<option value="2">转单</option>
+						<option value="3">放弃</option>
+						</select>
+						<button class="bt" v-on:click='btOne()'>开始查询</button>
+					</li>
+					<li>						
+						<span class="span_text">商机日期:<input id="Mindate" class="timeInput" >--<input id="Maxdate" class="timeInput" ></span>						
+					</li>
+				</ul>
+			</div>
+			<div id="div_ove" class="tab">
+				<img src="img/xg.png" class="img_">
+				<span class="bj" v-on:click="change(items.ID,$index)">修改</span>
+			</div>
+			<div class="cen_2" >
+				<ul class="cen_ul1">
+					<li>选项</li>
+					<li>商机名称</li>
+					<li>客户名称</li>
+					<li>商机日期</li>
+					<li class="sxjg">筛选结果</li>
+					<li>原因</li>
+				</ul>
+				<ul class="cen_ul2" v-for="item in items" v-if="sallshow">
+					
+					<li >
+						<!--<input type="radio" name="name"/>-->
+						<label v-on:click="getInfo(item.ID,$index)">
+						    <input type="radio" class="hidden-input" name="name1" />
+						    <span class="your style about radio" ></span>
+						</label>
+					</li>
+					<li>{{item.B_name}}</li>
+					<li>{{item.C_name}}</li>
+					<li>{{item.B_datetime}}</li>
+					<template v-for="option in itemo.cB_status">
+					<li v-if='option.value==item.B_status' v-bind:value='option.value' selected="selected">
+						{{option.text}}
+					</li>
+					</template>
+                    <li v-if="item.B_status == 3">
+                        {{item.B_giveupcause}}
+                    </li>
+                    <template v-else>
+                        <li></li>
+                    </template>
+				</ul>
+				<div class="li_show">
+						<div class="box">
+							<div class="tcdPageCode">
+							
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/IE8.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_paidan_ifrem.js" ></script>
+		<script type="text/javascript" src="js/jquery.page.js" ></script>
+		<script type="text/javascript" src="js/laydate/laydate.js" ></script>
+		<script type="text/javascript" src="js/laydate/common.js" ></script>
+		<script>
+			var vm = new Vue({
+				el:'#ul_ove',
+				data:{
+					items:{},
+					id: '',
+					itemst:'',
+					itemo:{
+							cB_status:[
+							{text:"无",value:"0"},
+							{text:"派单",value:"1"},
+							{text:"无",value:"2"},
+							{text:" 放弃",value:"3"}
+						]
+						},
+					index:'',
+					page:1,
+					rows:5,
+					count:0,
+					sallshow:true
+				},
+				methods:{
+					getInfo: function(id,index) {
+						vm.$data.id = id;
+						vm.$data.index = index;
+					},
+					change: function() {
+						if(vm.$data.id == ''){
+							alert('请选择！')
+						}else{
+							var index = vm.$data.index;
+//							console.log(index)
+							util.openWindow("CRM_filtrate_co.html",{
+							Username:vm.$data.itemst.Username,
+							ID:vm.$data.id,
+							Token:vm.$data.itemst.Token,
+							nuber:0
+						},"inframe");						
+						}
+					},
+					btOne:function(){
+						vm.$data.rows = 5;
+						vm.$data.page = 1;
+						vm.$data.count = 0;
+						isH = true;
+						flitrate();	
+						pege();
+					}
+				}
+			})
+			flitrate();	
+			function extend(p,c){
+				for(var itemo in c){
+					p[itemo] = c[itemo];
+				}
+			}
+		</script>	
+		<script>	
+					$(".cen>.cen_1").resize();
+					   	laydate.skin('molv');				
+					    laydate({
+					        elem: '#time .timeInput'
+					    })
+		</script>
+	</body>
+</html>

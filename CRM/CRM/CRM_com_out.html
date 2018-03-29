@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_com_out.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="div_ove">
+			
+			<div class="cen_1">
+				<h1>商机信息</h1>
+				<ul id="time">
+					<li>
+						<span class="span_text">客户名称：</span>
+						<input type="text" id="C_name" class="text_ove" v-model="itemse.C_name"/>
+						<img src="img/ck.png" class="img_p" v-on:click="Showimg(0)"/>
+						<span class="span_text_p">客户地址：</span>
+						<input type="text" id="C_address" class="text_ove" disabled="disabled" v-model="itemse.C_address"/>						
+					</li>
+					<li>
+						<span>商机名称：</span>
+						<input type="text" id="B_name" class="text_ove" maxlength="12" v-model="itemse.B_name"/>
+						<span class="span_text_v">商机来源：</span>
+						<select id="B_source" class="provinces" ><!--B_source-->
+							{{{'cB_source'|options}}}
+						</select>
+					</li>
+					<li id="three">
+						服务类型：
+						<select id="B_servicekind1" class="provinces">
+						</select>
+						<select id="B_servicekind2" class="provinces">
+						</select>
+						<span class="span_texts">需求量：</span>
+						<input type="text" id="B_neednumber" class="text_ove" maxlength="8" v-model="itemse.B_neednumber" placeholder=""/><!--B_neednumber-->
+						<span class="spanspan">如果以千(1000)算，请输入数字,如果以(吨，件)等，请在数量后加上。</span>
+					</li>
+					<li>
+						<span class="span_text">商机类型：</span><!--B_kind-->
+						<select id="B_kind" class="provinces otes">
+							{{{'cB_kind'|options}}}
+						</select>
+						
+					</li>
+					<li class="li_ut">
+						<span class="span_text">商机原因：</span><textarea id="B_needcause" v-model="itemse.B_needcause"></textarea><!--B_needcause-->
+						
+					</li>
+					<li class="li_uts">
+						<img src="img/cp.png" v-on:click="baoc" class="img_"/>
+						<span v-on:click="baoc">存盘</span>
+						<img src="img/fh.png" style="margin-left: 90px;" class="out" onclick="util.bcak()"/>
+						<span class="out" onclick="util.bcak()">返回</span>
+					</li>
+				</ul>
+			</div>
+					<div class="cen_2" v-if="willShow">
+						<ul>
+							<li class="li_two">
+								<span>客户名称</span>
+								<span>客户地址</span>
+								<span>联系人</span>
+							</li>
+							<li class="li_san">							
+								<!--<iframe src="CRM_com_outs.html" class="cotion"></iframe>-->
+								<div class="li_div" >
+									<div v-for="item in items" v-on:click="btn(item.ID,$index)">
+										<span>{{item.C_name}}</span>
+										<span>{{item.C_address}}</span>
+										<span>{{item.C_linkname}}</span>
+									</div>		
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="li_divs" v-if="liShow">
+						<ul>
+							<li class="ts">&nbsp;提示</li>
+							<li>
+								<div>
+									没有符合添加的客户，是否立即新增客户
+								</div>
+							</li>
+							<li>
+								<button class="yes" v-on:click='yes'>是</button>
+								<button class="no" v-on:click='no'>否</button>
+							</li>
+						</ul>
+					</div>
+			</div>
+			<script type="text/javascript" src="js/jquery.min.js"></script>
+			<script type="text/javascript" src="js/utils.js" ></script>
+			<script type="text/javascript" src="js/vue.js" ></script>
+			<script type="text/javascript" src="js/CRM_com_out.js" ></script>
+			<script>
+				var vm = new Vue({
+					el:'#div_ove',
+					data:{
+						items:{},						
+						itemse:{},
+						itemo:{
+						cB_kind:[
+							{text:"请选择",value:""},
+							{text:"项目施工",value:"1"},
+							{text:"服务保养",value:"2"}
+							],
+						cB_source:[
+							{text:"请选择",value:""},
+							{text:"合作伙伴",value:"1"},
+							{text:"老客户介绍",value:"2"},
+							{text:"平台",value:"3"},
+							{text:"公司资源",value:"4"},
+							{text:"网络渠道",value:"5"},
+							{text:"本人开发",value:"6"}
+							]
+						},
+						index:'',
+						date:'',
+						itemst:{
+						ID:'',
+						B_servicekind1:'',
+						B_servicekind2:'',
+						B_source:0,
+						B_kind:0,
+						B_servicekind1:'',
+						B_servicekind2:'',
+						B_needcause:'',
+						B_neednumber:'',
+						},				
+						willShow:false,
+						liShow:false,
+						C_address:''
+					},
+					methods:{
+						btn:function(id,index){
+							vm.$data.itemst.ID = id;
+							vm.$data.index = index;
+							var indexs = this.$data.items[index];
+							if(indexs){
+								$('#C_name').val(indexs.C_name)
+								$('#C_address').val(indexs.C_address)
+								vm.$data.C_address = indexs.C_address;
+								vm.$data.willShow = false;
+							}
+						},
+						Showimg:function(index){
+							vm.$data.index = index;
+							Shiwimg();
+						},
+						yes:function(){
+							util.openWindow("CRM_client_co.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							UserID:objs_ove.UserID,
+							Sunber:2
+						},"inframe");
+						},
+						no:function(){
+							vm.$data.liShow = false;
+						},
+						baoc:function(){
+								if(objs_ove.Sunber == 2){
+									if(vm.$data.C_address == ''){
+										alert('请点击放大镜选择客户！')
+										vm.$data.willShow = false;
+										return;
+									}else{
+										inte();
+									}								
+								}else{										
+										intes();
+									}
+						}
+					},
+					filters:{
+					options:function(val){
+						var itemK = val.substring(1,val.length);
+						var datas = this.$data.itemo[val];
+						var returns = [];
+						for(var i = 0;i<datas.length;i++){
+							var option_ = document.createElement("option");
+							option_.innerText = datas[i].text;
+							option_.value = datas[i].value;
+							if(datas[i].value == this.itemse[itemK]){
+								option_.setAttribute("selected",true);
+							}
+							returns.push(option_.outerHTML);
+						}
+						return returns.join("");
+						}
+					}
+				})
+				var objs_ove = util.getExreas();
+			</script>
+			<script>
+				if(objs_ove.Sunber == 1){
+					$('#C_name').attr('disabled','disabled');
+					$('.img_p').remove();
+					comShow();
+					Hit();
+				}else{
+					Hits();
+				}
+				$('#B_source').on("click",function(){
+					vm.$data.itemst.B_source = $(this).val();
+				})
+				$('#B_kind').on("click",function(){
+					vm.$data.itemst.B_kind = $(this).val();
+				})
+				$(".inputMax").keyup(function () {
+		                $(this).val($(this).val().replace(/[^0-9.]/g, ''));
+		            }).bind("paste", function () {  //CTR+V事件处理    
+		                $(this).val($(this).val().replace(/[^0-9.]/g, ''));
+		            }).css("ime-mode", "disabled"); //CSS设置输入法不可用
+			</script>
+	</body>
+</html>

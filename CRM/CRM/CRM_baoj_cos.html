@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_baoj_co.css" />
+		<title></title>
+        <style>
+            .cen_2 > ul > .li_two {
+                position: relative;
+            }
+
+            .imgfe {
+                position: absolute;
+                left: 295px;
+                top: 0;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="center" id="ove_a">
+			<div class="cen_1 ceon">
+				<h1>项目方案报价</h1>
+			</div>
+			<div class="tab">
+				<span class="img_">状态：</span><span class="zt"></span>
+			</div>
+			<div class="cen_2">
+				<ul>
+					<li>
+						商谈地点：<input type="text" id="O_conferaddress" maxlength="8" v-model="item.O_conferaddress"/>
+					</li>
+					<li>
+						客户反馈：<!--<input type="text" v-model="items.O_customerfeedback"/>-->
+						<select id="O_customerfeedback" class="provinces prov"  >
+							{{{'cO_customerfeedback'|options}}}
+						</select>
+					</li>
+					<li>
+						商谈人员：<input maxlength="8" id="O_consumerpeople" type="text" v-model="item.O_consumerpeople"/>
+					</li>
+					<li class="li_two">
+						<img src="img/wjjia.png" class="img_ove"/>
+						<span class="fan">方案及报价文件</span>
+						<img src="img/sc.png" class="img_two"/>
+						<span class="blues">
+							<form id="updata">
+								<input type="file" id="upload" name="show"/>
+							</form>
+							上传
+						</span>
+						<input id="O_fileURL" class="right" v-model="img_.Name" disabled="disabled"></input>
+                        <img src="img/x.png" class="imgfe" v-on:click="sc(img_.ID,$index)" />
+					</li>
+				</ul>
+				<ul class="ul_two">
+					<li>
+                        沟通内容：<textarea id="O_tokleinfor" v-model="item.O_tokleinfor"></textarea>
+					</li>
+					<li>
+						下步计划：<textarea id="O_nextplan" v-model="item.O_nextplan"></textarea>
+					</li>
+				</ul>
+				<div class="div_ove">
+						<span style="color: red;">备注：</span><textarea id="remark1" v-model="item.remark1"></textarea>
+				</div>
+			</div>
+			<div class="tabs">
+				<button onclick="util.bcak()">返回</button>
+				<button v-on:click="qd()" class="qd">确定</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_baoj_ifrem.js" ></script>
+		<script type="text/javascript" src="js/jquery-form.js" ></script>
+		<script type="text/javascript" src="js/updata.js" ></script>
+        <script type="text/javascript" src="js/Remove.js"></script>
+		<script>
+		</script>
+		<script>
+			var vm = new Vue({
+				el:'#ove_a',
+				data:{
+					item:'',
+					items:{
+						cO_customerfeedback:[
+							{text:"请选择",value:"0"},
+							{text:"认可",value:"1"},
+							{text:"重做",value:"2"},
+							{text:"部分修改",value:"3"}
+						]
+					},
+					img_:"",
+					Sunber:'',
+					zt:''
+				},
+				methods:{
+					qd:function(){
+						if(objs_ove.Sunber == 2){
+							baoj_ifrem_san1();
+						}else{
+							baoj_ifrem_san();
+						}
+						
+					},
+				    sc:function(id,index){
+					    if(confirm('确定删除重新上传？')){
+					        vm.$data.id = id;
+					        pdata();
+					    }else{
+							
+					    }						
+					}
+				},
+				filters:{
+					options:function(val){
+						var itemKey = val.substring(1,val.length);
+						var data = this.$data.items[val];
+						var returns = [];
+						for(var i=0;i<data.length;i++){
+							var option_ = document.createElement("option");
+							option_.innerText = data[i].text;
+							option_.value = data[i].value;
+							if(data[i].value==this.item[itemKey]){
+								option_.setAttribute("selected",true);
+							}
+							returns.push(option_.outerHTML);
+						}
+						return returns.join("");
+					}
+				}
+			})
+			var objs_ove = util.getExreas();
+			if (objs_ove.Sunber == 2) {
+			    $('#ove_date').removeAttr('disabled');
+			    $("#shape option:first").remove();
+			    $('#O_fileURL').hide();
+			    $('.imgfe').hide();
+			    $('.zt').text('新增');
+			} else {
+			    baoj_ifrem_ove();
+			    $('.zt').text('修改');
+			}
+			function extend(p,c){
+				for(var item in c){
+					p[item] = c[item];
+					}
+				}
+			
+	</script>
+	<script>
+		var a = 1
+			$('#shape').on('click',function(){
+				if(a==1){
+					$("#shape option:first").remove();
+					a++;
+					return;
+				}					
+			})
+		</script>
+	</body>
+</html>

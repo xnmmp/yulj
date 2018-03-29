@@ -1,0 +1,78 @@
+.div_div_1 {
+    background: #e8e8e8;
+    width: 809px;
+    height: 372px;
+    border: 1px solid #a8a8a8;
+    margin-left: 12px;
+    position: relative;
+}
+.div_div_1>.div_div_s {
+    margin: 0;
+    padding: 0;
+    height: 180px;
+    width: 95%;
+    margin-left: 2.5%;
+}
+.div_div_1>.div_div_s>ul {
+    /* float: none; */
+    width: 40%;
+    float: left;
+    height: 160px;
+    list-style: none;
+}
+.div_div_1>.div_div_s>ul>li {
+    width: 100%;
+    min-height: 28px;
+    line-height: 28px;
+    margin:0;
+    font-weight: 100;
+    font-size: 14px;
+}
+.li_uts {
+    position: relative;
+    bottom: 45px;
+    height: 30px;
+    float: right;
+    margin-right: 15px;
+}
+.li_uts>button {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background: #3a6c92;
+    border: 0;
+}
+.provinces{
+	width: 197px;
+	height: 25px;
+}
+.prov{
+	width:182px;
+	
+}
+.provs{
+	width:154px;
+}
+.provst{
+	width:182px;
+	margin-left: 28px;
+}
+.prover{
+	margin-left: 15px;
+}
+.tab {
+    height: 28px;
+    line-height: 28px;
+    width: 100%;
+    background: url(../img/bj1.png);
+    right: 80px;
+    color: #2577d4;
+    cursor: pointer;
+}
+.tab>.img_ {
+    position: relative;
+    top: 5px;
+    margin-left: 680px;
+}

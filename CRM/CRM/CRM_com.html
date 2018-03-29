@@ -1,0 +1,911 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/html.css" />
+		<link rel="stylesheet" href="css/evalindex.css" />
+		<link rel="stylesheet" href="css/CRM_com.css" />
+		<title></title>
+        <style>
+            .cen_1 > ul > li > .span_ {
+                width: 340px;
+                height: 63px;
+                word-wrap: break-word;
+                line-height: 20px;
+                letter-spacing: 1px;
+                display: block;
+                overflow: hidden;
+            }
+
+            .cen_1 > ul > li {
+                position: relative;
+                float: left;
+            }
+            .center > .cen_3 {
+                height: auto;
+                min-height: 210px;
+                display: inline-block;
+            }
+            .cen_1 > ul > .li_ {
+                min-height: 28px;
+            }
+
+            .cen_1 > ul > li > .span_1 {
+                width: 315px;
+                min-height: 28px;
+                float: right;
+                word-wrap: break-word;
+                display: inline-block;
+            }
+
+            .center > .cen_3 {
+                height: auto;
+                min-height: 210px;
+                display: inline-block;
+            }
+
+                .center > .cen_3 > ul {
+                    height: auto;
+                    min-height: 210px;
+                }
+        </style>
+	</head>
+
+	<body>
+		<div class="center" id="ove_a">
+			<button class='out_bt' v-on:click='backs()'>返回上一级</button>
+			<h1>商机信息</h1>
+            <div class="cen_1 cen_3">
+
+                <div class="tab">
+                    <img src="img/xg.png" style="margin-left: 5px;" />
+                    <span v-on:click="xg">修改</span>
+                </div>
+                <ul>
+                    <li>客户名称：<span>{{items.C_name}}</span></li>
+                    <li>
+                        &nbsp;联系人：<span>{{items.C_linkname}}</span>
+                    </li>
+                    <li>商机名称：<span v-model="items.B_name">{{items.B_name}}</span></li>
+                    <li>
+                        商机来源：
+                        <template v-for="option in itemo.cB_source">
+                            <span v-if='option.value==items.B_source' v-bind:value='option.value' selected="selected">
+                                {{option.text}}
+                            </span>
+                        </template>
+                    </li>
+                    <li class="li_">需求原因：<span class="span_1" v-model="items.B_needcause">{{items.B_needcause}}</span></li>
+                    <li>&nbsp;需求量：<span v-model="items.B_neednumber">{{items.B_neednumber}}</span></li>
+                </ul>
+                <ul>
+                    <li>客户&nbsp;地址：<span v-model="items.C_address">{{items.C_address}}</span></li>
+                    <li>联系人电话：<span v-model="items.C_linkphone">{{items.C_linkphone}}</span></li>
+                    <li>商机&nbsp;日期：<span v-model="date">{{date}}</span></li>
+                    <li>
+                        商机&nbsp;类型：
+                        <template v-for="option in itemo.cB_kind">
+                            <span v-if='option.value==items.B_kind' v-bind:value='option.value' selected="selected">
+                                {{option.text}}
+                            </span>
+                        </template>
+                    </li>
+                    <li>商机提供者：<span v-model="items.Addbusinessman">{{items.Addbusinessman}}</span></li>
+                </ul>
+            </div>
+			<h1 v-on:click="tollshow($event,0)" v-if='h1show'>商机筛选</h1>
+			<div class="center_ove" v-if="tallshow0">
+				<ul class="ul_ove">
+					<li>
+						<label v-on:click='label($event,1)'>
+						        派单:<input id="ove" type="radio" class="hidden-input" name="name"/>
+						    <span class="your style about radio" data-type="ove" ></span>
+						</label>
+					</li>
+					<li>
+						<label v-on:click='label($event,3)'>
+						     放弃:<input id="san" type="radio" class="hidden-input" name="name" />
+						    <span class="your style about radio" data-type="ove"></span>
+						</label>
+					</li>
+				</ul>
+				<textarea id="texta" v-if='textshow' placeholder="请输入放弃原因！" v-model="items.B_giveupcause"></textarea>
+				<button class="cp" v-on:click='labels($event,1)' v-show='okshow'>确定</button>
+			</div>
+			<h1 v-on:click="tollshow($event,1)" v-if='h1show3'>商机派单</h1>
+			<div class="cen_1 cen_2" v-show="tallshow1">
+				<div class="tab">
+					<img src="img/jia.png" class="tollsoxz"/>
+					<span class="tollsoxz" v-on:click="tollso">新增</span>
+					<img class="tollsoxg" src="img/xg.png" style="margin-left: 5px;" />
+					<span class="tollsoxg" v-on:click="tollso1">修改</span>
+				</div>
+				<ul>
+					<li>派单人：
+						<span v-model='items.B_remark1'>{{items.B_remark1}}</span>
+					</li>
+					<li id="province">跟单人：
+						<span  v-model='items.B_documentaryName'>{{items.B_documentaryname}}</span>
+					</li>
+				</ul>
+				<ul>
+					<li>跟单人职责：
+                        <span class="span_" v-model='items.B_documentaryneed'>{{items.B_documentaryneed}}</span>
+					</li>
+				</ul>
+			</div>
+			<h1 style="font-size: 18px;" v-on:click="tollshow($event,2)" v-if='h1show2'>客户拜访</h1>
+			<div class="cen_4" v-if="tallshow2">
+
+				<div class="tab">
+					<img src="img/jia.png" class="tjia" />
+					<span class="tjia" v-on:click='tollpv'>新增</span>
+					<img class="xiugai" src="img/xg.png" style="margin-left: 5px;" />
+					<span class="xiugai" v-on:click='tollpvs'>修改</span>
+				</div>
+				<div class="div_div">
+				<div class="cen_2" >
+						<ul class="cen_ul1">
+							<li>选项</li>
+							<li>商机名称</li>
+							<li>客户名称</li>
+							<li>拜访时间</li>
+							<li class="cen_liov"></li>
+						</ul>
+                        <ul class="cen_ul1 cenop" v-for="item in pv" v-if="Sollt">
+
+                            <li>
+                                <!--<input type="radio" name="name"/>-->
+                                <label id="{{item.ID}}" v-on:click="btns(item.ID,$index)">
+                                    <input type="radio" class="hidden-input" name="name1" />
+                                    <span class="your style about radio"></span>
+                                </label>
+                            </li>
+                            <li>{{item.CV_businessName}}</li>
+                            <li>{{item.CV_consumerName}}</li>
+                            <li>{{item.CV_datetime}}</li>
+                            <li class="cen_liov"><span v-on:click="obj(item.ID,$index)" style="cursor: pointer;color: #2577d4;font-size: 14px;font-weight: 600;">立即查看</span></li>
+                        </ul>
+				</div>
+			</div>
+			</div>
+			<h1 v-on:click="tollshow($event,3)" v-if='h1show2'>需求评估</h1>
+			<div class="cen_1 cen_3 cenfove" v-if="tallshow3">
+
+				<div class="tab">
+					<img src="img/jia.png" class="tjia1"/>
+					<span v-on:click="tollas" class="tjia1">新增</span>
+					<img class="xiugai1" src="img/xg.png" style="margin-left: 5px;" />
+					<span class="xiugai1" v-on:click="tollas1">修改</span>
+				</div>
+				<div class="div_div_1">
+					<ul>
+					<li>工期要求：
+						<template v-for="option in itemo.cA_durationneed">
+						<span v-if='option.value==as.A_durationneed' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>验收要求：
+						<template v-for="option in itemo.cA_acceptanceneed">
+						<span v-if='option.value==as.A_acceptanceneed' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>施工要求：
+						<template v-for="option in itemo.cA_constructneed">
+						<span v-if='option.value==as.A_constructneed' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>违约赔偿：
+						<template v-for="option in itemo.cA_defaultmakeup">
+						<span v-if='option.value==as.A_defaultmakeup' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li style="color: red;">商机质量：
+						<span id="A_businessmass" v-model="as.A_businessmass">{{as.A_businessmass}}</span>
+					</li>
+				</ul>
+				<ul>
+					<li>客户资质：
+						<template v-for="option in itemo.cA_aptitudes">
+						<span v-if='option.value==as.A_aptitudes' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>项目规模：
+						<template v-for="option in itemo.cA_projectscale">
+						<span v-if='option.value==as.A_projectscale' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>资金回笼：
+						<template v-for="option in itemo.cA_fundsbackfront">
+						<span v-if='option.value==as.A_fundsbackfront' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>项目预算：
+						<template v-for="option in itemo.cA_budget">
+						<span v-if='option.value==as.A_budget' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+				</ul>
+				</div>
+				<div>
+					<ul>
+					<li>回扣要求：
+						<template v-for="option in itemo.cA_kickbackneed">
+						<span v-if='option.value==as.A_kickbackneed' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+						
+					</li>
+					<li>项目阻力：
+						<template v-for="option in itemo.cA_projectdrag">
+						<span v-if='option.value==as.A_projectdrag' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+						
+					</li>
+					<li>竞争对手：
+						<template v-for="option in itemo.cA_compete">
+						<span v-if='option.value==as.A_compete' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li style="color: red;">成单率：<span id="A_overorder" v-model="as.A_overorder">{{as.A_overorder}}</span></li>
+					<li>评估结论：
+						<template v-for="option in itemo.cA_conclusion">
+						<span v-if='option.value==as.A_conclusion' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+				</ul>
+				<ul>
+					<li>客户关注点：
+						<template v-for="option in itemo.cA_consumerFocus">
+						<span v-if='option.value==as.A_consumerFocus' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>客户关键人关系：
+						<template v-for="option in itemo.cA_consumerkey">
+						<span v-if='option.value==as.A_consumerkey' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li>竞争力：
+						<template v-for="option in itemo.cA_competitiveness">
+						<span v-if='option.value==as.A_competitiveness' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+				</ul>
+				</div>
+			</div>
+			<h1 v-on:click="tollshow($event,4)" v-if='h1show2'>项目方案报价</h1>
+			<div class="cen_4" v-if="tallshow4">
+				<div class="tab">
+					<img src="img/jia.png" class="baojxz"/>
+					<span v-on:click="tollbaoj" class="baojxz">新增</span>
+					<img src="img/xg.png" style="margin-left: 5px;" class="baojxg"/>
+					<span class="baojxg" v-on:click="tollbaojs">修改</span>
+				</div>
+				<div class="div_div">
+					<div class="cen_2" >
+						<ul class="cen_ul1">
+							<li>选项</li>
+							<li>日期</li>
+							<li>商谈人员</li>
+							<li>客户反馈</li>
+							<li class="cen_liov"></li>
+						</ul>
+						<ul class="cen_ul1 cenop" v-for="item in baoj" v-if="Sollt">
+							
+							<li >
+								<!--<input type="radio" name="name"/>-->
+								<label  id="{{item.ID}}" v-on:click="btns(item.ID,$index)">
+								    <input type="radio" class="hidden-input" name="name1" />
+								    <span class="your style about radio" ></span>
+								</label>
+							</li>
+							<li>{{item.O_datetime}}</li>
+							<li>{{item.O_consumerpeople}}</li>
+							<template v-for="option in itemo.cO_customerfeedback">
+							<li v-if='option.value==item.O_customerfeedback' v-bind:value='option.value' selected="selected" >
+								{{option.text}}
+							</li>
+							</template>	
+							<li class="cen_liov"><span v-on:click="objs(item.ID,$index)" style="cursor: pointer;color: #2577d4;font-size: 14px;font-weight: 600;">立即查看</span></li>
+						</ul>
+				</div>
+				</div>
+			</div>
+			<h1 v-on:click="tollshow($event,5)" v-if='h1show2'>签单合同</h1>
+			<div class="cen_1 opop cenfove " v-if="tallshow5">
+
+				<div class="tab">
+					<img src="img/jia.png" class="bjxz"/>
+					<span v-on:click="tollbj" class="bjxz">新增</span>
+					<img src="img/xg.png" style="margin-left: 5px;" class="bjxg"/>
+					<span v-on:click="tollbj1" class="bjxg">修改</span>
+				</div>
+				<div class="div_div_1 div_div_2">
+					<ul>
+						<li>签单日期：<span>{{bj.P_datetime}}</span></li>
+						<li>合同名称：<span>{{bj.P_name}}</span></li>
+						<li>合同签订人：<span>{{bj.P_cookiename}}</span></li>
+						<li>合同类型:
+							<template v-for="option in itemo.cP_kindone">
+							<span v-if='option.value==bj.P_kindone' v-bind:value='option.value' selected="selected" >
+										{{option.text}}
+							</span>
+							</template>	
+							<template v-for="option in itemo.cP_kindtwo">
+							<span v-if='option.value==bj.P_kindtwo' v-bind:value='option.value' selected="selected" >
+										{{option.text}}
+							</span>
+							</template>
+						</li>
+					</ul>
+					<ul>
+						<li>合同编号：<span>{{bj.ID}}</span></li>
+						<li>合同开始日期：<span>{{bj.P_startdatetime}}</span></li>
+						<li>商机日期：<span>{{bj.remark1}}</span></li>
+						<li>结束日期：<span>{{bj.P_enddatetime}}</span></li>
+						<li class="biot" v-for="item in img_">
+							<img src="img/sc.png"/>
+                            <a href="{{item.Url}}" target="_blank">{{item.Name}}</a><span style="cursor: pointer;">下载甲方文件</span>						
+						</li>
+						<li class="biot">							
+							<span>合同金额：</span><span>{{bj.P_money}}</span><span>元</span>							
+						</li>
+					</ul>
+				</div>
+			</div>
+			</div>
+			<script type="text/javascript" src="js/jquery.min.js" ></script>
+			<script type="text/javascript" src="js/utils.js" ></script>
+			<script type="text/javascript" src="js/vue.js"></script>
+			<script type="text/javascript" src="js/CRM_com_ifrem.js" ></script>
+			<script>
+				var vm = new Vue({
+					el: '#ove_a',
+					data: {
+						item:'',
+						itemo:{
+						cB_kind:[
+							{text:"请选择",value:""},
+							{text:"项目施工",value:"1"},
+							{text:"服务保养",value:"2"}
+							],
+						cP_kindone:[
+							{text:"请选择",value:""},
+							{text:"服务保养",value:"1"},
+							{text:"工程项目",value:"2"}
+							],
+						cP_kindtwo:[
+							{text:"请选择",value:""},
+							{text:"闭口合同",value:"1"},
+							{text:"开口合同",value:"2"}
+							],
+						cB_source:[
+							{text:"请选择",value:""},
+							{text:"合作伙伴",value:"1"},
+							{text:"老客户介绍",value:"2"},
+							{text:"平台",value:"3"},
+							{text:"公司资源",value:"4"},
+							{text:"网络渠道",value:"5"},
+							{text:"本人开发",value:"6"}
+						],
+						cO_customerfeedback: [
+                            { text: "认可", value: "1" },
+                            { text: "重做", value: "2" },
+                            { text: "部分修改", value: "3" }
+						],
+						cA_durationneed: [
+                        { text: "宽松", value: "5" },
+                        { text: "严格", value: "3" },
+                        { text: "苛刻", value: "0" }
+						],
+						cA_constructneed: [
+							{ text: "宽松", value: "5" },
+							{ text: "严格", value: "3" },
+							{ text: "苛刻", value: "0" }
+						],
+						cA_acceptanceneed: [
+							{ text: "宽松", value: "5" },
+							{ text: "严格", value: "3" },
+							{ text: "苛刻", value: "0" }
+						],
+						cA_defaultmakeup: [
+							{ text: "无", value: "1" },
+							{ text: "宽松", value: "5" },
+							{ text: "严格", value: "3" },
+							{ text: "苛刻", value: "0" }
+						],
+						cA_aptitudes: [
+							{ text: "没有实力", value: "0" },
+							{ text: "一般", value: "10" },
+							{ text: "有实力", value: "20" }
+						],
+						cA_fundsbackfront: [
+							{ text: "快", value: "20" },
+							{ text: "账期一个月内", value: "10" },
+							{ text: "慢", value: "0" }
+						],
+						cA_projectscale: [
+							{ text: "超大型", value: "20" },
+							{ text: "大型", value: "15" },
+							{ text: "中型", value: "10" },
+							{ text: "小型", value: "5" }
+						],
+						cA_budget: [
+							{ text: "<1万", value: "5" },
+							{ text: "1万-5万", value: "10" },
+							{ text: "5-10", value: "15" },
+							{ text: ">10", value: "20" }
+						],
+						cA_businessmass: '',
+						cA_compete: [
+							{ text: "无", value: "20" },
+							{ text: "不清楚", value: "10" },
+							{ text: "不强", value: "15" },
+							{ text: "强", value: "0" }
+						],
+						cA_consumerkey: [
+							{ text: "没有", value: "0" },
+							{ text: "一点", value: "5" },
+							{ text: "可以", value: "15" },
+							{ text: "搞定", value: "25" }
+						],
+						cA_kickbackneed: [
+							{ text: "没有", value: "0" },
+							{ text: "有", value: "5" }
+						],
+						cA_consumerFocus: [
+							{ text: "价格", value: "5" },
+							{ text: "质量", value: "9" },
+							{ text: "品牌", value: "13" },
+							{ text: "性价比", value: "15" }
+						],
+						cA_competitiveness: [
+							{ text: "弱", value: "5" },
+							{ text: "一般", value: "10" },
+							{ text: "强", value: "25" }
+						],
+						cA_projectdrag: [
+							{ text: "无", value: "10" },
+							{ text: "有", value: "2" }
+						],
+						cA_overorder: '',
+						cA_conclusion: [
+							{ text: "请选择", value: "0" },
+							{ text: "放弃", value: "1" },
+							{ text: "普通商机", value: "2" },
+							{ text: "重点商机", value: "3" },
+							{ text: "鸭子商机", value: "4" }
+						]
+						},
+						items:{},
+						itemst:'',
+						pv:{
+							CV_datetime:''
+						},
+						huanz:{
+							B_kind:'',
+							B_source:''
+						},
+						baoj:{},
+						ove_item:{
+							Soitems:'',
+							name:''
+						},
+						bj:'',
+						as:{
+							A_businessmass:'',
+							A_overorder:''
+						},
+						index:'',
+						date:'',
+						B_needcauses:'',
+						h1show2:false,
+						h1show3:false,
+						Sollt:false,
+						tallshow0: true,
+						tallshow1: false,
+						tallshow2: false,
+						tallshow3: false,
+						tallshow4: false,
+						tallshow5: false,
+						textshow: true,
+						h1show: true,
+						okshow: true,
+						shuj: '',
+						indexs: '',
+						img_:'',
+						a:1
+					},
+					methods: {
+						btns:function(id,index){
+						vm.$data.shuj = id;
+						vm.$data.index = index;
+						},
+						xg: function() {
+							util.openWindow("CRM_com_out.html",{
+									Username:objs_ove.Username,
+									Token:objs_ove.Token,
+									ID:objs_ove.IDs,
+									UserID:objs_ove.UserID,
+									CustomerID:objs_ove.CustomerID,
+									Sunber:1
+								},"inframe");
+						},
+						tollshow: function (e, index) {
+
+						    switch (index) {
+						        case 0:
+						            {
+						                this.tallshow0 = true;
+						            };
+						            break;
+						        case 1:
+						            {
+						                this.tallshow1 = true;
+						            };
+						            break;
+						        case 2:
+						            {
+						                this.tallshow2 = true;
+						                PV_ifrems();
+						                if (vm.$data.pv.length > 0) {
+						                    setTimeout(function () {
+						                        vm.$data.Sollt = true;
+						                    })
+						                } else {
+						                    setTimeout(function () {
+						                        vm.$data.Sollt = false;
+						                        $('.tab .xiugai').hide();
+						                    })
+						                }
+						            };
+						            break;
+						        case 3:
+						            {
+						                this.tallshow3 = true;
+						                as_flitrate_ove();
+						                if (vm.$data.as.A_businessmass != "") {
+						                    setTimeout(function () {
+						                        $('.tab .tjia1').hide();
+						                    })
+						                } else {
+						                    setTimeout(function () {
+
+						                        $('.tab .xiugai1').hide();
+						                    })
+						                }
+						            };
+						            break;
+						        case 4:
+						            {
+						                this.tallshow4 = true;
+						                baoj_flitrate_ove();
+						                if (vm.$data.baoj.length > 0) {
+						                    setTimeout(function () {
+						                        vm.$data.Sollt = true;
+						                    })
+						                } else {
+						                    setTimeout(function () {
+						                        $('.tab .baojxg').hide();
+						                    })
+						                }
+						            };
+						            break;
+						        case 5:
+						            {
+						                this.tallshow5 = true;
+						                bg_flitrate_ove();
+						                if (vm.$data.bj == '') {
+						                    setTimeout(function () {
+						                        $('.biot').css('display', 'none');
+						                        $('.tab .bjxg').hide();
+						                    })
+						                } else {
+						                    if (vm.$data.bj.P_URL2.data == undefined) {
+						                        setTimeout(function () {
+						                            $('.P_URL2').hide();
+						                        })
+						                    } else {
+						                        setTimeout(function () {
+						                            $('.P_URL2').hide();
+						                        })
+						                    }
+						                    if (vm.$data.bj.UserID == undefined) {
+						                        setTimeout(function () {
+						                            $('.tab .bjxg').hide();
+						                        })
+						                    } else {
+						                        setTimeout(function () {
+						                            $('.tab .bjxz').hide();
+						                        })
+						                    }
+						                }
+						            };
+						            break;
+						        default:
+						            break;
+						    }
+						},
+						label: function(e, index) {							
+							if(vm.$data.indexs == 1) {
+								return;
+							} else {
+								this.okshow = true;
+							}
+							switch(index) {
+								case 1:
+									{
+										this.textshow = false;
+										vm.$data.index = index;
+									};
+									break;
+								case 3:
+									{									
+										this.textshow = true;
+										vm.$data.index = index;
+										$('#texta').css("opacity","1");
+									};
+									break;
+								default:
+									break;
+							}
+						},
+						labels: function(e, index) {
+							if(vm.$data.index == 0) {
+								alert('请选择！');
+								return;
+							}else if(vm.$data.index == 1){
+							   
+							    if (vm.$data.items.B_documentaryID == '') {
+							        this.okshow = false;
+							        $('.ul_ove>li>label>input').attr('disabled', 'disabled');
+							        vm.$data.indexs = 1;
+							        vm.$data.tallshow1 = true;
+							        vm.$data.h1show3 = true;
+							        filtrate_oves();
+							    } else {
+							        this.okshow = false;
+							        $('.ul_ove>li>label>input').attr('disabled', 'disabled');
+							        vm.$data.indexs = 1;
+							        
+							        vm.$data.h1show2 = true;
+							        vm.$data.h1show3 = true;
+							        vm.$data.Sollt = true;
+							        filtrate_oves();
+                                }
+							}else if(vm.$data.index == 3){		
+								var textr = $('#texta').val();
+								if(textr == ''){
+									alert("未填写放弃理由！");
+									return;
+								}else{
+									$('.ul_ove>li>label>input').attr('disabled','disabled');
+									$('#texta').attr('disabled','disabled');
+									this.okshow = false;
+									vm.$data.h1show2 = false;
+									vm.$data.h1show3 = false;
+									vm.$data.tallshow2 = false;
+									vm.$data.tallshow0 = true;
+									vm.$data.tallshow1 = false;
+									vm.$data.tallshow2 = false;
+									vm.$data.tallshow3 = false;
+									vm.$data.tallshow4 = false;
+									vm.$data.tallshow5 = false;
+									vm.$data.h1show2 = false;
+									vm.$data.h1show3 = false;
+									vm.$data.Sollt = false;
+									vm.$data.indexs = 1;
+									filtrate_oves();
+								}								
+							}
+						},
+						tollso: function(e) {
+							util.openWindow("CRM_so_out.html",{
+									Username:objs_ove.Username,
+									Token:objs_ove.Token,
+									ID:objs_ove.IDs,
+									UserID:objs_ove.UserID,
+									Addbusinessman:objs_ove.Addbusinessman,
+									B_documentaryID:objs_ove.B_documentaryID,
+									B_documentaryneed:vm.$data.items.B_documentaryneed,
+									Sunber:2
+								},"inframe");	
+						},
+						tollso1:function(){
+							util.openWindow("CRM_so_out.html",{
+									Username:objs_ove.Username,
+									Token:objs_ove.Token,
+									ID:objs_ove.IDs,
+									UserID:objs_ove.UserID,
+									Addbusinessman:objs_ove.Addbusinessman,
+									B_documentaryID:objs_ove.B_documentaryID,
+									B_documentaryneed:vm.$data.items.B_documentaryneed,
+									Sunber:1
+								},"inframe");	
+						},
+						tollpv: function(e) {
+							util.openWindow("CRM_pv_cou.html",{
+									Username:objs_ove.Username,
+									Token:objs_ove.Token,
+									UserID:objs_ove.UserID,
+									CV_documentaryID:objs_ove.ID,
+									CV_consumerID:objs_ove.CustomerID,
+									CV_businessID:objs_ove.IDs,
+									CV_consumerName:vm.$data.items.C_name,
+									Sunber:2
+								},"inframe");	
+						},
+						tollpvs: function(e) {
+							if(vm.$data.shuj==''){
+							alert('请选择需要修改对象!')
+							}else{
+								util.openWindow("CRM_pv_cou.html",{
+								Username:vm.$data.itemst.Username,
+								Token:vm.$data.itemst.Token,
+								ID:vm.$data.shuj,
+								index:vm.$data.index,
+								Sunber:1
+								},"inframe");
+							}
+						},
+						//需求评估
+						tollas: function() {
+						util.openWindow("CRM_as_cos.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							A_businessID:objs_ove.IDs,
+							A_customerID:objs_ove.CustomerID,
+							A_documentaryID:objs_ove.B_documentaryID,
+							UserID:objs_ove.UserID,
+							Sunber:2
+						},"inframe");
+						},
+						tollas1:function(){
+							util.openWindow("CRM_as_cos.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							ID:vm.$data.as.ID,
+							Sunber:1
+						},"inframe");
+						},
+						tollbaoj: function(e) {
+						util.openWindow("CRM_baoj_cos.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							UserID:objs_ove.UserID,
+							O_businessID:objs_ove.IDs,
+							CustomerID:vm.$data.items.CustomerID,
+							O_documentaryID:objs_ove.B_documentaryID,
+							Sunber:2
+						},"inframe");
+						},
+						tollbaojs: function() {
+						if(vm.$data.shuj==''){
+							alert('请选择需要修改对象!')
+						}else{							
+							util.openWindow("CRM_baoj_cos.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							ID:vm.$data.shuj,
+							index:vm.$data.index,
+							Sunber:1
+						},"inframe");
+						}
+						},
+						tollbj: function() {
+							util.openWindow("CRM_bg_cos.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							P_businessID:objs_ove.IDs,
+							P_customerID:objs_ove.CustomerID,
+							P_documentaryID:objs_ove.B_documentaryID,
+							UserID:objs_ove.UserID,
+							remark1:objs_ove.B_datetime,
+							Sunber:2
+						},"inframe");
+						},
+						tollbj1: function() {
+							util.openWindow("CRM_bg_cos.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							ID:vm.$data.bj.ID,
+							index:0,
+							Sunber:1
+						},"inframe");
+						},
+						obj:function(id,index){
+							util.openWindow("CRM_pv_co.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							ID:id,
+							index:index,
+							Sunber:0
+						},"inframe");
+						},
+						objs:function(id,index){
+							util.openWindow("CRM_baoj_co.html",{
+							Username:objs_ove.Username,
+							Token:objs_ove.Token,
+							ID:id,
+							index:index,
+							Sunber:0
+						},"inframe");
+						},
+						backs:function(){
+							util.bcak();
+						}
+					}
+				})
+				
+			</script>
+        <script>
+            var objs_ove = util.getExreas();
+            com();
+            if (vm.$data.items.B_status == 1 && vm.$data.items.B_documentaryID != '') {
+                vm.$data.tallshow0 = true;
+                vm.$data.tallshow1 = true;
+                vm.$data.h1show3 = true;
+                vm.$data.h1show2 = true;
+            } else {
+                vm.$data.tallshow0 = true;
+                vm.$data.tallshow1 = false;
+                vm.$data.tallshow2 = false;
+                vm.$data.tallshow3 = false;
+                vm.$data.tallshow4 = false;
+                vm.$data.tallshow5 = false;
+                vm.$data.h1show2 = false;
+                vm.$data.h1show3 = false;
+                vm.$data.Sollt = false;
+            }
+            if (vm.$data.items.B_documentaryname == "") {
+                setTimeout(function () {
+                    $('.tab .tollsoxg').hide();
+                })
+            } else {
+                setTimeout(function () {
+                    $('.tab .tollsoxz').hide();
+                })
+            }
+            if (objs_ove.T_role == 3) {
+                vm.$data.h1show = false;
+                vm.$data.h1show3 = false;
+                vm.$data.tallshow0 = false;
+                vm.$data.tallshow1 = false;
+                com();
+            } else {
+                com();
+            }
+        </script>
+	</body>
+</html>
