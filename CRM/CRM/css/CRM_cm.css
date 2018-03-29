@@ -1,0 +1,240 @@
+.sup_number {
+    border-radius: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: #ff0000;
+    color: white;
+   	position: relative;
+   	right: 38px;
+    float: right;
+    top: 1.5px;
+    line-height: 15px;
+    text-align: center;
+    display: block;
+   	letter-spacing: 0px;
+}
+.header_rights>ul>li>.login{
+	font-size: 14px;
+	font-weight: 100;
+	cursor: pointer;
+	color: #FFFFFF;
+	margin-left: 16px;
+	text-align: center;
+	min-width: 91px;
+	display: inline-block;
+}
+#header{
+	background: #587c98;
+}
+.centent{
+	position: relative;
+	width: 1080px;
+	min-height: 550px;
+	background: #3a6c92;
+}
+.header_rights{
+	min-width: 310px;
+	position: relative;
+	height: 33px;
+	float: right;
+}
+.header_rights>ul{
+	width: 100%;
+	height: 33px;
+	position: relative;
+	list-style: none;
+	float: none;
+}
+.header_rights>ul>li>.li_tu1{
+	position: absolute;
+	top: 7px;
+	left: 0;
+}
+.header_rights>ul>li{
+	min-width: 130px;	
+	float: left;
+	position: relative;
+	text-align: center;
+}
+/*...header_rights>ul>.li>span{
+	font-size: 12px;
+	font-weight: 100;
+	color: #FFFFFF;
+	letter-spacing: 1px;
+}*/
+.header_rights>ul>.service{
+	font-size: 12px;
+	font-weight: 100;
+	letter-spacing: 1px;
+	width: 100px;
+	color: #FFFFFF;
+	text-align: center;
+}
+.header_rights>ul>li>span{
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: 100;
+}
+.logo_title{
+	margin-left: 0;
+}
+.cen{
+	width: 100%;
+	height: auto;	
+}
+.cen>ul{
+	float: left;
+}
+.cen>.cen_1{	
+	list-style: none;
+	width: 188px;
+	/*min-height: 590px;*/
+	position: relative;
+	margin-top: 40px;
+	margin-left: 20px;
+}
+.cen>.cen_1>.li1{
+	width: 100%;
+	height: 38px;
+	line-height: 38px;
+	background: #1b62cd;
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: 100;
+	text-align: center;
+	border: 0;
+}
+.cen>.cen_1>.order>span{
+	color: #FFFFFF;
+	margin-right: 23px;
+	font-family: "微软雅黑";
+    font-size: 16px;
+}
+.cen>.cen_1>li{
+	position: relative;
+	width: 100%;
+	z-index: 100;
+	min-height: 51px;
+	line-height: 51px;
+	background: #3a6c92;
+	
+	text-align: center;
+}
+.cen>.cen_1>li>span{
+	color: #FFFFFF;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	letter-spacing: 1px;
+}
+.cen>.cen_1>.xia{
+	position: relative;
+	margin-top: -55px;
+}
+
+.cen>.cen_1>.xia:hover{
+	background: #3a6c92;
+}
+.cen>.cen_1>.xia>ul{
+	width: 100%;
+	
+}
+.cen>.cen_1>.xia>ul>li{
+	margin-left: 45%;
+	font-size: 14px;
+	font-weight: 100;
+	height: 25px;
+	line-height: 25px;
+}
+.cen>.cen_1>.xia>ul>li{
+	color: #FFFFFF;
+}
+.cen>.cen_1>.xia>ul>li:hover{
+	background: #5c9bfb;
+	cursor: pointer;
+}
+.cen>.cen_1>li>img{
+	top: 5px;
+	margin-right: 15px;
+	position: relative;
+}
+.cen>.cen_1>li:hover{
+	background: #5c9bfb;
+	cursor: pointer;
+}
+.cen>.cen_2{	
+	list-style: none;
+	width: 845px;
+	position: relative;
+	margin-left: 20px;
+}
+.cen>.cen_2>.li2{	
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background: #3a6c92;
+	border: 0;
+}
+.cen>.cen_2>.li3{
+	width: 100%;
+	height: 500px;
+	position: relative;
+}
+.cen>.cen_2>.li3>img{
+	width: 100%;
+	height: 100%;
+}
+.cen>.cen_2>.li2>span{
+	font-size: 12px;
+	color: #FFFFFF;
+	letter-spacing: 2px;
+	margin-left: 15px;
+}
+.shouz{
+	cursor: pointer;
+}
+.kf{
+	position: absolute;
+	right: 20px;
+}
+iframe{
+	width: 100%;
+	height: 510px;
+	padding: 0;
+	margin: 0;
+	
+}
+.cmkfue{
+	width: 70%;
+	margin-top: 5px;
+	line-height: 50px;
+	font-size: 16px;
+	padding: 0;
+	color: #FFFFFF;
+	font-family: "微软雅黑";
+	margin-left: 230px;
+}
+.seach_x{
+	position: absolute;
+	height: 1px;	
+	width: 188px;
+	z-index: 1000;
+	background: -webkit-linear-gradient(left,#3a6c92 ,white,#3a6c92); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right,#3a6c92 ,white,#3a6c92); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right,#3a6c92 ,white,#3a6c92); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right,#3a6c92 ,white,#3a6c92); /* 标准的语法（必须放在最后） */
+}
+.header_rights:hover{
+	cursor: pointer;
+}
+.sgBtn{
+	width: 135px;
+	height: 35px;
+	line-height: 35px;
+	margin-left: 10px;
+	margin-top: 10px;
+	text-align: center;
+	background-color: #0095D9;
+	color: #FFFFFF;
+	float: left;
+	border-radius: 5px;
+}

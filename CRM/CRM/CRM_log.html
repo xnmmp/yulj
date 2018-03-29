@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_log.css" />
+		<link rel="stylesheet" href="css/xcConfirm.css" />
+		<title>CRM登录页面</title>
+	</head>
+	<body>
+		<div class="centent" id="ove_a">
+			<img src="img_log/log.jpg"/>
+			<div class="center">
+				<div class="cen_log">
+					<img src="img_log/log_cen.png" />
+				</div>
+				<div class="cen_loug">
+					<ul>
+						<li class="li_ove">
+							<img class="tu1" src="img_log/yhm.png" />
+							<input class="name" id="name" type="text" placeholder="用户名" onkeyup="html.methods.name()"/>
+						</img>
+						<li class="li_two">
+							<img class="tu2" src="img_log/mima.png" />
+							<input class="pwd" id="pwd" type="password" placeholder="用户密码" onkeyup="html.methods.pwd()"/>
+						</li>
+						<li class="li_san">
+							<button class="dl" onclick="html.methods.login()">登录</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/js_verify.js" ></script>
+		<script type="text/javascript" src="js/IE8.js" ></script>
+		<script type="text/javascript" src="js/xcConfirm.js" ></script>	
+		<script>
+		$(function(){
+       		  $(document).keypress(function(e) {  
+			    // 回车键事件  
+			       if(e.which == 13) {  
+			   		jQuery(".dl").click();  
+			       }  
+			   }); 
+		})
+		</script>
+	</body>
+</html>

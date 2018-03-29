@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_filtrate_co.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="filtrate">
+			<div class="cen_1 ceon">
+				<h1>筛选修改</h1>
+			</div>
+			<div class="center_ove">
+				<ul class="ul_ove">
+					<li value="1">
+						<label>
+						    派单:<input id="ove" type="radio" class="hidden-input" name="name" />
+						    <span class="your style about radio" data-type="ove" ></span>
+						</label>
+					</li>
+					<li style="display: none;">
+						<label>
+						 放弃:<input id="san" type="radio" class="hidden-input" name="name" />
+						    <span class="your style about radio" data-type="ove"></span>
+						</label>
+					</li>
+					<li value="3">
+						<label>
+						 放弃:<input id="san" type="radio" class="hidden-input" name="name" />
+						    <span class="your style about radio" data-type="ove"></span>
+						</label>
+					</li>
+				</ul>
+				<textarea v-if="sallshow" v-model="items.B_giveupcause"></textarea>
+			</div>			
+			<div class="li_uts">			
+			<button class="cp" v-on:click="ok()">确定</button>
+			<button class="out" v-on:click='fhui()'>返回</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_paidan_ifrem.js" ></script>
+		<script>
+			var vm =new Vue({
+				el:'#filtrate',
+				data:{
+					items:{
+						B_needcause:''
+					},
+					ids:'',
+					sallshow:'',
+					index:''
+				},
+				methods:{
+					ok:function(){
+						filtrate_oves();
+					},
+					fhui:function(){
+						util.bcak();
+					}
+					
+				}
+			})
+			filtrate_ove();
+		</script>
+		<script>
+			$(function(){
+				$('.ul_ove>li').on("click",function(){
+				var index = $(this).val();
+				console.log(index)
+				switch(index){
+						case 1:{
+							vm.$data.index = index;
+							vm.$data.sallshow = false;
+						};break;
+						case 2:{
+							vm.$data.index = index;
+							vm.$data.sallshow = false;
+						};break;
+						case 3:{
+							vm.$data.index = index;
+							vm.$data.sallshow = true;
+						};break;
+						default:break;
+					}
+			})
+			})
+		</script>
+	</body>
+</html>

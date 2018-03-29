@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_baoj_co.css" />
+        <style>
+                .div_ {
+                    width: 100%;
+                    height: 70px;
+                    font-size: 14px;
+                    float: left;
+                    color: red;
+                }
+
+                .div_ > .span_ {
+                    display: inline-block;
+                    width: 90%;
+                    color: red;
+                    height: 70px;
+                    font-size: 14px;
+                    word-break: break-word;
+                    position: absolute;
+                }
+        </style>
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="ove_a">
+			<div class="cen_1 ceon">
+				<h1>项目方案报价</h1>
+			</div>
+			<div class="tab">
+				<span class="img_">状态：</span><span>查看</span>
+			</div>
+			<div class="cen_2">
+				<ul>
+					<li class="li_ove">
+						联系日期：<span>{{item.O_datetime}}</span>
+					</li>
+					<li>
+						商谈地点：<span>{{item.O_conferaddress}}</span>
+					</li>
+					<li>
+						客户反馈：
+						<template v-for="option in items.cO_customerfeedback">
+						<span v-if='option.value==item.O_customerfeedback' v-bind:value='option.value' selected="selected" >
+							{{option.text}}
+						</span>
+						</template>						
+					</li>
+					<li>
+						商谈人员：<span>{{item.O_consumerpeople}}</span>
+					</li>
+					<li class="li_two">
+						<img src="img/wjjia.png" class="img_ove"/>
+						<span>方案及报价文件</span>
+						<img src="img/xiaz.png" class="img_two"/>
+                        <a class="blue" href="{{img_.Url}}" target="_blank">下载</a>
+						<input class="right" v-model="img_.Name" disabled="disabled"></input>
+					</li>
+				</ul>
+				<ul class="ul_two">
+					<li>
+                        沟通内容：<textarea disabled="disabled">{{item.O_tokleinfor}}</textarea>
+					</li>
+					<li>
+						下步计划：<textarea disabled="disabled">{{item.O_nextplan}}</textarea>
+					</li>
+				</ul>
+                <div class="div_">
+                    备注：<span class="span_">{{item.remark1}}</span>
+                </div>
+			</div>
+			<div class="tabs">
+				<button onclick="util.bcak()">返回</button>
+				
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>	
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_baoj_ifrem.js" ></script>
+		<script>
+			var vm = new Vue({
+				el:'#ove_a',
+				data:{
+					item:'',
+					items:{
+						cO_customerfeedback:[
+							{text:"请选择",value:"0"},
+							{text:"认可",value:"1"},
+							{text:"重做",value:"2"},
+							{text:"部分修改",value:"3"},
+						]
+					},
+					zt:'',
+					img_:'',
+					date:''
+					
+				}
+			})
+			baoj_ifrem_ove();
+			function extend(p,c){
+				for(var item in c){
+					p[item] = c[item];
+					}
+				}
+		</script>		
+	</body>
+</html>

@@ -1,0 +1,173 @@
+.center>.cen_2 {
+    width: 804px;
+    height: 280px;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    background: #e8e8e8;
+    position: relative;
+    border: 1px solid #a8a8a8;
+}
+.cen_2>ul {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    list-style: none;
+    height: 190px;
+    width: 302px;
+    float: left;
+    margin-left: 10px;
+}
+.cen_2>ul>.li_ove {
+    margin-top: 10px;
+}
+.img_t{
+	width: 30px;
+    height: 30px;
+    border: 1px solid;
+    position: relative;
+    float: right;
+    top: -45px;
+}
+.cen_2>ul>.li_two{
+	width: 340px;
+	height: 42px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	line-height: 42px;
+	border: 1px solid #a8a8a8;
+	background: #FFFFFF;
+}
+.blue{
+	display: inline-block;
+	width: 30px;
+	height: 42px;
+	position: relative;
+	line-height: 42px;
+	bottom: 8px;
+}
+.right{
+	float: right;
+	width: 100px;
+	height: 25px;
+	line-height: 25px;
+	margin-top: 8px;
+	background: #FFFFFF;
+	border: 0;
+}
+.img_ove {
+    width: 32px;
+    height: 29px;
+    margin-left: 3px;
+    margin-top: 5px;
+}
+.img_two{
+	position: relative;
+	bottom: 5px;
+}
+.blue{
+	color: #3063e5;
+	cursor: pointer;
+}
+.cen_2>ul>.li_two>span{
+	position: relative;
+	bottom: 8px;
+}
+.cen_2>ul>li {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #666666;
+}
+.cen_2>ul>li>textarea {
+    width: 300px;
+    height: 78px;
+    position: absolute;
+}
+.cen_2>ul>li:first-child {
+    margin-top: 10px;
+}
+.cen_2>.ul_two{
+	margin-left: 60px;
+}
+.cen_2>.ul_two>li {
+    width: 100%;
+    height: 83px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666666;
+    position: relative;
+}
+.div_ove{
+	width: 100%;
+	height: 42px;
+	position: absolute;
+	bottom: 25px;
+}
+.div_ove>textarea{
+	position: absolute;
+	width: 700px;
+}
+#O_fileURL{
+	min-width: 100px;
+	background: #FFFFFF;	
+	border: 1px solid #666666;
+	float: right;
+	overflow: hidden;
+	margin-top: 7px;
+}
+#O_fileURLs{
+	min-width: 100px;
+	background: #FFFFFF;	
+	border: 1px solid #666666;
+	float: right;
+	overflow: hidden;
+	margin-top: 7px;
+}
+.blues{
+	overflow: hidden;
+	position: relative;
+	width: 30px;
+	height: 25px;
+	line-height: 25px;
+}
+#updata{
+	position: relative;
+    width: 40px;
+    height: 25px;
+    right: 135px;
+    top: 15px;
+}
+#updatas{
+	position: relative;
+    width: 40px;
+    height: 25px;
+    right: 135px;
+    top: 15px;
+}
+#updata input{
+	opacity: 0;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 30px;
+	bottom: 0px;
+	z-index: 88;
+	background-color: rgba(0,0,0,0);
+	-webkit-opacity: 0;
+}
+
+#updatas input{
+	opacity: 0;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 30px;
+	bottom: 0px;
+	z-index: 88;
+	background-color: rgba(0,0,0,0);
+	-webkit-opacity: 0;
+}

@@ -1,0 +1,122 @@
+﻿ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_pv_co.css" />
+		<title></title>
+	</head>
+	<body>
+	<div class="center" id="ove_a">
+			<div class="cen_1 ceon">
+				<h1>客户拜访<span>查看</span></h1>
+			</div>
+			<div class="tab">
+				<span class="img_s">状态：</span><span>查看</span>
+			</div>
+			<div class="cen_2">
+				<ul>
+					<li>
+						客户名称：<span>{{item.CV_consumerName}}</span>
+					</li>
+					<li>
+						拜访形式：
+						<template v-for="option in items.cCV_ways">
+						<span v-if='option.value==item.CV_ways' v-bind:value='option.value' selected="selected" >
+							{{option.text}}
+						</span>
+						</template>
+					</li>	
+					<li>
+						联系日期：<span>{{item.CV_datetime}}</span>
+					</li>
+					<li>
+						对方人员：<span>{{item.CV_oppositepeople}}</span>
+					</li>
+					<li>
+						拜访目的：
+						<template v-for="option in items.cCV_purpose">
+						<span v-if='option.value==item.CV_purpose' v-bind:value='option.value' selected="selected" >
+							{{option.text}}
+						</span>
+						</template>
+					</li>
+					<li class="li_ove">
+						客户态度：
+						<template v-for="option in items.cCV_feedback">
+							<span v-if='option.value==item.CV_feedback' v-bind:value='option.value' selected="selected" >
+								{{option.text}}
+							</span>							
+						</template>
+					</li>
+					<li>
+						备      注：<textarea disabled="disabled">{{item.CV_remark1}}</textarea>
+					</li>
+				</ul>
+				<ul class="ul_two">
+					<li>
+						沟通类容：<textarea disabled="disabled">{{item.CV_talkdetails}}</textarea>
+					</li>
+					<li>
+						下步计划：<textarea disabled="disabled">{{item.CV_lowerplan}}</textarea>
+					</li>
+				</ul>
+			</div>
+			<div class="tabs">
+				<img src="img/wjjia.png" class="img_ove"/>
+				<img src="img/xiaz.png" />
+                <a class="out_bt" href="{{img_.Url}}" target="_blank">下载资料</a><span>{{img_.Name}}</span>
+				<button onclick="util.bcak()">返回</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_pv_ifrem.js" ></script>
+		<script>
+			var vm = new Vue({
+				el:'#ove_a',
+				data:{
+					item:'',
+					items:{
+						cCV_feedback:[
+							{text:"请选择",value:"0"},
+							{ text: "认可", value: "1" },
+							{text:"观望",value:"2"},
+							{ text: "冷漠", value: "3" },
+						],
+						cCV_ways:[
+							{text:"请选择",value:"0"},
+							{text:"上门",value:"1"},
+							{text:"电话",value:"2"}
+						],
+						cCV_purpose:[
+							{text:"请选择",value:"0"},
+							{text:"熟悉客户建立感情",value:"1"},
+							{text:"了解客户需求",value:"2"},
+							{text:"现场勘查诊断",value:"3"},
+							{text:"方案论证",value:"4"},
+							{text:"报价论证",value:"5"},
+							{text:"商定合同",value:"6"},
+							{text:"挖掘商机需求",value:"7"},
+							{text:"其他",value:"8"}
+						]
+					},
+					zk:'',
+					date:'',
+					img_:''
+				},
+				methods:{
+					
+				}
+			})
+			var objs_five = util.getExreas();
+			PV_ifrem_two();
+			function extend(p,c){
+						for(var item in c){
+							p[item] = c[item];
+						}
+					}
+		</script>
+	</body>
+</html>

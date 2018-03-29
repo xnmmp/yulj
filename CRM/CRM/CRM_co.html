@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_co.css" />
+		<title></title>
+	</head>
+
+	<body>
+		<div class="center" id="ove_a">
+			<div class="cen_1">
+				<h1>商机信息</h1>
+				<ul id="time">
+					<li>
+						<span class="span_text">客户姓名:</span><input type="text" id="C_name" class="text_ove two" />
+						<span class="span_texts">商机类型:</span>
+						<select id="province" class="provinces">
+							<option value="">请选择</option>
+							<option value="1">项目施工</option>
+							<option value="2">服务保养</option>
+						</select>
+						<button class="bt" onclick="html.methods.btOne()">开始查询</button>
+						<span class="btns" onclick="html.methods.newuser()">新增</span>
+					</li>
+					<li>
+						<span class="span_text">商机名称:</span><input type="text" id="B_name" class="text_ove two" />
+						<span class="span_texts">日期:<input id="Mindate" class="timeInput text_ove two" >--<input id="Maxdate" class="timeInput text_ove two" ></span>
+						
+					</li>
+				</ul>
+			</div>
+
+			<div class="cen_2">
+				<ul class="cen_ul1">
+					<li>商机编号</li>
+					<li>商机名称</li>
+					<li>商机日期</li>
+					<li>需求原因</li>
+					<li>商机类型</li>
+					<li class="btn">
+						操作
+					</li>
+				</ul>
+				<ul class="cen_ul2">
+					<li v-for="item in items">
+						<span>{{$index+1}}</span>
+						<span class="home_name">{{item.B_name}}</span>
+						<span>{{item.B_datetime}}</span>
+						<span>{{item.B_needcause}}</span>
+						<span>{{item.B_kind}}</span>
+						<span class="bj" v-on:click="check(item.ID,$index)">查看详情</span>
+					</li>
+					<li class="li_show">
+						<div class="box">
+							<div class="tcdPageCode">
+							
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/utils.js"></script>
+		<script type="text/javascript" src="js/jquery.page.js" ></script>
+		<script type="text/javascript" src="js/laydate/laydate.js" ></script>
+		<script type="text/javascript" src="js/laydate/common.js" ></script>
+		<script type="text/javascript">
+				var html = {
+					datas: {
+						vm:null,
+						data:{
+							items:'',
+							page:1,
+							rows:5,
+							count:0
+						},
+						params:{}
+					},
+					methods: {
+					newuser:function(){
+									util.openWindow("CRM_com_out.html",{
+									Username:html.datas.params.T_accountnumber,
+									Token:html.datas.params.Token,
+									UserID:html.datas.params.T_UserID,
+									Addbusinessman:html.datas.params.T_name,
+									B_datetime:html.datas.params.B_datetime,
+									Sunber:2
+								},"inframe");					
+						},
+					check:function(id,index){
+						var ids = html.datas.data.items[index].CustomerID;//客户ID
+//						console.log(html.datas.data.items[index])
+						util.openWindow("CRM_com.html",{
+									Username:html.datas.params.T_accountnumber,
+									Token:html.datas.params.Token,
+									UserID:html.datas.params.T_UserID,
+									IDs:id,//商机ID
+									CustomerID:ids,//客户ID
+									Addbusinessman:html.datas.params.T_name,//当前登录人姓名
+									T_role:html.datas.params.T_role,//权限判断
+									ID:html.datas.params.ID,//当前登录人ID
+									index:index,
+									B_datetime:html.datas.data.items[index].B_datetime,//商机日期
+									B_documentaryID:html.datas.data.items[index].B_documentaryID,//跟单人ID
+									B_documentaryneed:html.datas.data.items[index].B_documentaryneed,
+									Sunber:2
+								},"inframe");
+						},
+						btOne:function(){					
+							html.datas.data.rows = 5;
+							html.datas.data.page = 1;
+							html.datas.data.count = 0;
+							isH = true;
+							html.init();
+							bind();
+						}
+					},
+					init: function() {
+						html.datas.vm = new Vue({
+							el: '.cen_ul2',
+							data: html.datas.data,
+							methods:html.methods
+						})
+						html.datas.params = util.getExreas(null,true);	
+						$.ajax({
+							type:"post",//html.datas.params
+							url:util.Config.url+"/Business/SearchBussinessByRole",
+							dataType:"json",
+							data:{
+								Username:html.datas.params.T_accountnumber,
+								Token:html.datas.params.Token,
+								page:html.datas.data.page,
+								rows:html.datas.data.rows,
+								UserID:html.datas.params.T_UserID,
+								B_documentaryID:html.datas.params.ID,
+								customerName:$('#C_name').val(),
+								Kind:$('#province').val(),
+								BussName:$('#B_name').val(),
+								Dates1:$('#Mindate').val(),
+								Dates2:$('#Maxdate').val()
+							},
+							async:true,
+							success:function(data){
+								if(data.state == 1){
+									html.datas.data.items = data.data;
+									html.datas.data.count = Math.ceil(data.count/html.datas.data.rows);
+									html.datas.data.page = data.page;
+									bind();
+									isH = false;
+								}else{
+									html.datas.data.items = data.data;
+									html.datas.data.count = Math.ceil(data.count/html.datas.data.rows);
+									html.datas.data.page = data.page;
+									bind();
+									alert(data.msg);
+								}
+							},
+							error:function(data){
+								console.log(data)
+							}
+						});
+					}
+				}
+				var isH = true;
+				function bind(){
+					if(isH){
+						$(".tcdPageCode").createPage({		
+							pageCount:html.datas.data.count,
+							current:html.datas.data.page,
+							backFn:function(p){
+					        	html.datas.data.page = p;
+					        	html.init();
+					        }
+					    });
+					}
+				};
+				function test(){
+					isH = true;
+					$(".tcdPageCode").unbind("click");
+					html.init();
+				};
+				function datas(){
+					laydate.skin('molv');
+				
+				    laydate({
+				        elem: '#time .timeInput'
+				    })
+				};
+				test();
+				datas();
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Administrator\Desktop\CRM发布</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/CCPRestSDK.dll">
+      <publishTime>07/14/2014 11:44:34</publishTime>
+    </File>
+    <File Include="bin/CommonSha.dll">
+      <publishTime>06/15/2017 15:30:22</publishTime>
+    </File>
+    <File Include="bin/CRM.dll">
+      <publishTime>06/15/2017 15:30:25</publishTime>
+    </File>
+    <File Include="bin/DAL.dll">
+      <publishTime>06/15/2017 15:30:22</publishTime>
+    </File>
+    <File Include="bin/Entity.dll">
+      <publishTime>06/15/2017 15:30:21</publishTime>
+    </File>
+    <File Include="bin/ERP_DAL.dll">
+      <publishTime>02/25/2017 15:51:19</publishTime>
+    </File>
+    <File Include="bin/ERP_Entity.dll">
+      <publishTime>02/25/2017 15:51:18</publishTime>
+    </File>
+    <File Include="bin/ERP_Service.dll">
+      <publishTime>02/25/2017 15:51:19</publishTime>
+    </File>
+    <File Include="bin/ERP_TokenChange.dll">
+      <publishTime>02/25/2017 15:51:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/21/2017 17:25:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>11/26/2016 10:35:54</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/21/2017 17:25:50</publishTime>
+    </File>
+    <File Include="bin/Repository.dll">
+      <publishTime>06/15/2017 15:30:23</publishTime>
+    </File>
+    <File Include="bin/Service.dll">
+      <publishTime>06/15/2017 15:30:23</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/21/2017 17:25:50</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/21/2017 17:25:50</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/21/2017 17:25:50</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>11/26/2016 10:35:57</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>11/26/2016 10:35:59</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.Formatting.resources.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.resources.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.WebHost.resources.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>11/26/2016 10:35:57</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>11/26/2016 10:35:59</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>11/26/2016 10:35:58</publishTime>
+    </File>
+    <File Include="Count/css/CRM_log.css">
+      <publishTime>11/28/2016 10:10:13</publishTime>
+    </File>
+    <File Include="Count/js/IE8_ove.js">
+      <publishTime>11/28/2016 09:47:09</publishTime>
+    </File>
+    <File Include="Count/js/jquery-form.js">
+      <publishTime>11/26/2016 11:01:12</publishTime>
+    </File>
+    <File Include="Count/js/jquery.min.js">
+      <publishTime>11/26/2016 11:01:00</publishTime>
+    </File>
+    <File Include="Count/js/jquery.paginate.js">
+      <publishTime>11/26/2016 11:01:07</publishTime>
+    </File>
+    <File Include="Count/js/login/loginform.js">
+      <publishTime>11/28/2016 10:43:49</publishTime>
+    </File>
+    <File Include="Count/js/LoginAuthentication.js">
+      <publishTime>11/26/2016 11:27:44</publishTime>
+    </File>
+    <File Include="CRM/CRM_Ar.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_Ar_co.html">
+      <publishTime>04/13/2017 16:59:12</publishTime>
+    </File>
+    <File Include="CRM/CRM_Ar_cos.html">
+      <publishTime>03/20/2017 10:32:01</publishTime>
+    </File>
+    <File Include="CRM/CRM_as.html">
+      <publishTime>03/23/2017 16:06:21</publishTime>
+    </File>
+    <File Include="CRM/CRM_as_co.html">
+      <publishTime>03/23/2017 16:16:33</publishTime>
+    </File>
+    <File Include="CRM/CRM_as_cos.html">
+      <publishTime>03/23/2017 16:16:42</publishTime>
+    </File>
+    <File Include="CRM/CRM_baoj.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_baoj_co.html">
+      <publishTime>03/27/2017 16:29:22</publishTime>
+    </File>
+    <File Include="CRM/CRM_baoj_cos.html">
+      <publishTime>03/29/2017 11:45:56</publishTime>
+    </File>
+    <File Include="CRM/CRM_bg.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_bg_co.html">
+      <publishTime>03/27/2017 16:29:38</publishTime>
+    </File>
+    <File Include="CRM/CRM_bg_cos.html">
+      <publishTime>03/29/2017 11:51:26</publishTime>
+    </File>
+    <File Include="CRM/CRM_client.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_client_co.html">
+      <publishTime>04/07/2017 18:40:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_cm.html">
+      <publishTime>03/16/2017 09:31:12</publishTime>
+    </File>
+    <File Include="CRM/CRM_co.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_com.html">
+      <publishTime>03/29/2017 13:04:26</publishTime>
+    </File>
+    <File Include="CRM/CRM_com_out.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_d_client.html">
+      <publishTime>03/16/2017 09:32:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_filtrate.html">
+      <publishTime>03/23/2017 16:14:49</publishTime>
+    </File>
+    <File Include="CRM/CRM_filtrate_co.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_log.html">
+      <publishTime>03/23/2017 16:06:43</publishTime>
+    </File>
+    <File Include="CRM/CRM_name.html">
+      <publishTime>03/01/2017 10:41:20</publishTime>
+    </File>
+    <File Include="CRM/CRM_names.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_pv.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_pv_co.html">
+      <publishTime>03/27/2017 16:29:04</publishTime>
+    </File>
+    <File Include="CRM/CRM_pv_cou.html">
+      <publishTime>03/29/2017 11:47:46</publishTime>
+    </File>
+    <File Include="CRM/CRM_pwo.html">
+      <publishTime>03/28/2017 18:41:05</publishTime>
+    </File>
+    <File Include="CRM/CRM_so.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_so_co.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/CRM_so_out.html">
+      <publishTime>03/20/2017 10:13:54</publishTime>
+    </File>
+    <File Include="CRM/css/CPM_pwo.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_Ar.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_Ar_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_as.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_as_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_baoj.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_baoj_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_bg.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_bg_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_client.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_client_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_cm.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_com.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_com_out.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_d_client.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_filtrate.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_filtrate_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_log.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_name.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_pv.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_pv_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_rito.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_so.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/CRM_so_co.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/evalindex.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/html.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/reset.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/css/xcConfirm.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/html.html">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/IE8_/img/icons.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/IE8_/img/loading.gif">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/IE8_/img/loading2.gif">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/0.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/00.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/1185.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/1209.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/1240.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/1248.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/1260.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/1266.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/1274.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/anniu.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/baid.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/beijtu.jpg">
+      <publishTime>03/08/2017 13:21:57</publishTime>
+    </File>
+    <File Include="CRM/img/beijtu.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/bg_tile.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/bg_vertical.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/bi.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/bj.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/bj1.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/body_bg.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/buttons.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/ck.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/cp.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/crmkh.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/delete_icon.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/dengdai.gif">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/F2.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/fangan.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/fh.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/gaoshou.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/gou.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/gt.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/header_bg.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/icons.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/ie.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/jia.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/jian.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/kh.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/loading.gif">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/loading2.gif">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/logo.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/lunz.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/opop.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/preview.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/qian.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/sc.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/shadow_wide.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/shou.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/shuib.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/sm.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/time_icon.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/tooltip.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/toux.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/tzine.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/whao.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/wjjia.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/x.png">
+      <publishTime>03/29/2017 11:44:03</publishTime>
+    </File>
+    <File Include="CRM/img/xg.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/xiaz.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/you.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/zhenjia.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/zp.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img/zuo.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img_log/log.jpg">
+      <publishTime>03/08/2017 13:20:13</publishTime>
+    </File>
+    <File Include="CRM/img_log/log.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img_log/log_cen.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img_log/mima.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img_log/shangc.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img_log/timg.jpg">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/img_log/yhm.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/josn/ip.json">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/josn/new2.json">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/josn/new_file.json">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/ajax.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_as_ifrem.js">
+      <publishTime>03/23/2017 11:35:53</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_baoj_ifrem.js">
+      <publishTime>03/08/2017 11:48:39</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_bg_ifrem.js">
+      <publishTime>03/29/2017 11:50:36</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_client_ifrem.js">
+      <publishTime>03/08/2017 11:49:46</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_cm_ifrem.js">
+      <publishTime>03/08/2017 11:51:00</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_cm_jx.js">
+      <publishTime>03/27/2017 16:25:27</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_com_ifrem.js">
+      <publishTime>03/08/2017 11:53:01</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_com_out.js">
+      <publishTime>03/08/2017 11:52:20</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_name_ifrem.js">
+      <publishTime>04/13/2017 17:02:20</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_paidan_ifrem.js">
+      <publishTime>03/08/2017 11:51:38</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_pv_ifrem.js">
+      <publishTime>03/08/2017 11:54:09</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_pwo_ifrem.js">
+      <publishTime>03/08/2017 11:45:11</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_sjpaidan_ifrem.js">
+      <publishTime>03/08/2017 11:53:50</publishTime>
+    </File>
+    <File Include="CRM/js/CRM_switch.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/Date.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/IE8.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/IE8_ove.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/jquery-form.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/jquery.min.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/jquery.page.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/js_verify.js">
+      <publishTime>04/19/2017 16:05:21</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/common.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/laydate.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/need/laydate.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/skins/dahong/icon.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/skins/dahong/laydate.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/skins/default/icon.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/skins/default/laydate.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/skins/molv/icon.png">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/laydate/skins/molv/laydate.css">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/placeholder_ie8.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/Remove.js">
+      <publishTime>03/29/2017 11:42:22</publishTime>
+    </File>
+    <File Include="CRM/js/resize.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/script.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/select_see.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/store.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/updata.js">
+      <publishTime>03/29/2017 11:42:26</publishTime>
+    </File>
+    <File Include="CRM/js/utils.js">
+      <publishTime>04/19/2017 16:49:54</publishTime>
+    </File>
+    <File Include="CRM/js/utils02.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/utils_ove.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/vue.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="CRM/js/xcConfirm.js">
+      <publishTime>03/01/2017 10:39:53</publishTime>
+    </File>
+    <File Include="crossdomain.xml">
+      <publishTime>01/12/2017 17:44:49</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>11/26/2016 10:35:57</publishTime>
+    </File>
+    <File Include="img/anniu.png">
+      <publishTime>11/28/2016 10:09:05</publishTime>
+    </File>
+    <File Include="img/log.png">
+      <publishTime>11/28/2016 10:05:06</publishTime>
+    </File>
+    <File Include="img/log_cen.png">
+      <publishTime>11/28/2016 10:05:06</publishTime>
+    </File>
+    <File Include="img/mima.png">
+      <publishTime>11/28/2016 10:06:14</publishTime>
+    </File>
+    <File Include="img/opop.png">
+      <publishTime>11/28/2016 10:09:05</publishTime>
+    </File>
+    <File Include="img/yhm.png">
+      <publishTime>11/28/2016 10:05:06</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/08/2017 13:02:49</publishTime>
+    </File>
+    <File Include="UploadImage/20161212b828278f3f3f4fb8a820d7b78a2c5ca412604.png">
+      <publishTime>12/12/2016 14:25:19</publishTime>
+    </File>
+    <File Include="Views/Login/Index.cshtml">
+      <publishTime>02/13/2017 17:46:40</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>11/26/2016 10:35:57</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/15/2017 15:04:19</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

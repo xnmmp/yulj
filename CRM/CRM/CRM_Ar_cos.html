@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_Ar_co.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>操作员管理</h1>
+			</div>
+			<div class="tab">
+				<!--<span class="img_s">带<span class="red">*</span>号为必填</span>-->
+				<span class="img_st">状态:查看</span>
+			</div>
+			<div class="ove_1">
+				<div class="div_1">
+				<div>员工工号：<span>{{items.T_jobnumber}}</span></div>
+				<div>用户名：<span>{{items.T_accountnumber}}</span></div>
+				</div>
+				<div class="div_2">	
+					<div class="ove_2">
+						角色：
+						<template v-for="option in item.cT_role">
+						<span v-if='option.value==items.T_role' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</span>
+						</template>
+					</div>
+					
+				</div>
+			</div>
+			<div class="oves_1">
+				<ul>
+					<li>姓名：<span>{{items.T_name}}</span></li>
+					<li>出生年月：<span>{{items.T_Birth}}</span></li>
+					<li>性别：<span>{{items.T_Sex}}</span></li>
+					<li>籍贯：<span>{{items.T_nativeplace}}</span></li>
+					<li>部门：<span>{{items.T_demartment}}</span></li>
+					<li>职务：<span>{{items.T_duct}}</span></li>
+					<li>手机：<span>{{items.T_phone}}</span></li>
+					<li>入职时间：<span>{{items.T_Entrytime}}</span></li>					
+				</ul>				
+				<ul>
+					<li class="li_st">
+						<img src="" class="img_"/>
+					</li>
+					<li>
+						<span>现居住地址：</span>
+						<span class="span_ove">{{items.T_Nowhous}}</span></li>
+					<li class="dce">身份证号：<span>{{items.T_IDcard}}</span></li>
+				</ul>				
+			</div>
+			<div class="tabs">
+				<button v-on:click="out">返回</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>>
+			<script>
+				var vm = new Vue({
+					el:'#ul_ove',
+					data:{
+						items:'',
+						item:{
+							cT_role:[
+							{text:"请选择",value:"0"},
+							{text:"总经理",value:"2"},
+							{text:"员工",value:"3"}
+							]
+						},
+						zt:''
+					},
+					methods:{
+						out:function(){
+							util.bcak();
+						}
+					}
+				})
+			</script>
+			<script>
+			$(function(){
+			var objs_ove = util.getExreas();
+			$.ajax({
+				url:util.Config.url+'/Administrator/SearchUserByUseridinfor',
+				datatype:"JSON",
+				type:"POST",
+				contentType:"application/x-www-form-urlencoded",//发送信息至服务器时内容编码类型。默认值适合大多数应用场合。
+				data:{
+					"Username":objs_ove.Username,
+					"Token":objs_ove.Token,
+					"T_accountnumber":objs_ove.T_accountnumber
+				},
+				success:function(data){
+					if(data.state == 2){
+							alert(data.msg)
+						}else if(data.state == 1){
+							extend(vm.$data.item,data.data);
+							vm.$data.items = data.data;	
+							if(data.data.T_Birth == '.'){
+								vm.$data.items.T_Birth = ''
+							} else if (data.data.T_Birth == '.undefined') {
+							    vm.$data.items.T_Birth = '';
+							}else{
+							var time = data.data.T_Birth.split(".");
+							var Max = time[0];
+							var Min =time[1];
+							vm.$data.items.T_Birth = Max+'年'+Min+'月';		
+							}							
+							if(data.data.T_photoUrl.data == null){
+								return;
+							}else{
+							$('.img_')[0].src = data.data.T_photoUrl.data[0].Url;
+							}
+							
+							
+						}else if(data.state == -1){
+							alert(data.msg);
+							window.open("CRM_log.html");
+						}
+				},
+				error:function(){
+					console.log('error');
+				}
+			})
+		})
+			function extend(p,c){
+				for(var items in c){
+					p[items] = c[items];
+				}
+			}
+		</script>
+	</body>
+</html>

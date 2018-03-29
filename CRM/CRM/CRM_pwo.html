@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CPM_pwo.css" />
+		<title>修改密码</title>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1">
+				<h1>修改密码</h1>
+			</div>
+			<div class="ove_1">
+				<ul>
+					<li>用户名：<input type="text" class="input_ove" v-model="item.Username"/></li>
+					<li>原密码：<input type="password" class="input_ove" id="pwo" /></li>
+					<li class="pwo1">新密码：<input type="password" class="input_ove" id="pwo1" /></li>
+					<li class="pwo1">确认新密码：<input type="password" id="pwo2" disabled="disabled"/></li>
+				</ul>
+			</div>
+			<div class="tabs">
+                <button onclick="util.bcak()">返回</button>
+				<button v-on:click="ok" class="ok">确定</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_pwo_ifrem.js" ></script>
+		<script>
+			var vm = new Vue({
+				el:'#ul_ove',
+				data:{
+					item:''
+				},
+				methods:{
+					ok:function(){
+						pwo2();
+					}
+				}
+			})
+			var oves_ = util.getExreas();
+			vm.$data.item = oves_;
+		</script>
+		<script>
+		$(function(){	
+			var a = 1;
+			for(var i=0;i<a;i++){
+				if(i==0){
+				$('#pwo').on('blur',function(){
+					pwo1();
+				});
+				$('#pwo1').blur(function(){
+					var pwo1 = $(this).val();
+					var pwo2 = $('#pwo2').val();
+					regu = /^[^\u4e00-\u9fa5]{0,}$/;
+					if(!regu.test(pwo1)){
+					    alert('密码不能为空格！');
+					    return;
+				    }else if(pwo1 == pwo2){
+						$('.ok').css("background","#3a6c92");
+						$('.ok').removeAttr('disabled');
+						$('#img4').remove();
+						$('#img5').remove();
+						$(this).after('<span id="img3" style="color:green;">√</span>');
+						$('#pwo2').after('<span id="img4" style="color:green;">√</span>');
+					}else{
+						$('.ok').css("background","#333333");
+						$('.ok').attr('disabled','disabled');
+						$('#pwo2').removeAttr('disabled');
+						$('#img3').remove();
+						$(this).after('<span id="img3" style="color:green;">√</span>');
+					}
+					$('#pwo2').on('mouseleave',function(){
+					var pwo1 = $('#pwo1').val();
+					var pwo2 = $('#pwo2').val();
+					if(pwo1 == pwo2){
+					$('.ok').css("background","#3a6c92");
+					$('.ok').removeAttr('disabled');
+					$('#img4').remove();
+					$('#img5').remove();
+					$(this).after('<span id="img4" style="color:green;">√</span>');
+					}else{	
+					$('.ok').css("background","#333333");
+					$('.ok').attr('disabled','disabled')
+					$('#img5').remove();
+					$('#img4').remove();
+					$(this).after('<span id="img5" style="color:red;">X</span>');
+					}
+					})
+				});
+				}else{
+					return;
+				}
+			}
+		})
+		</script>
+	</body>
+</html>

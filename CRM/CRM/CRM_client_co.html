@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_client_co.css" />
+		<title></title>
+	</head>
+
+	<body>
+		<div class="center" id="ove_a">
+			<div class="cen_1 ceon">
+				<h1>客户信息</h1>
+			</div>
+			<div class="zt">
+				<div>状态：<span v-text='zt'>{{zt}}</span></div>
+			</div>
+			<div class="center_ove">
+				<ul>
+					<li>
+						客户名称：
+						<input class="name" type="text" maxlength="8" v-model="items.C_name"/>
+					</li>
+					<li>
+						联系电话：<input type="text" id="Ptime" class="inputMax"  v-model="items.C_linkphone"/>
+					</li>
+
+					<li>
+						联系人员：<input type="text" maxlength="20" v-model="items.C_linkname"/>
+					</li>
+					<li>
+						客户类型：
+						<select id="C_kind" class="provinces prov" >
+							{{{'cC_kind'|options}}}
+						</select>
+
+					</li>
+					<li>
+						所属行业：<input type="text" maxlength="8" v-model="items.C_industry"/>
+
+					</li>
+				</ul>
+				<ul class="ul_two">
+					<li id="three">
+						所属区域：
+						<select id="province" class="provinces" v-model="item.provinces.province">							
+							<option selected="selected" value="{{item.cities.provinceid}}">{{item.provinces.province}}</option>
+						</select>
+						省
+						<select id="city" class="provinces" v-model="item.cities.city">
+							
+							<option selected="selected" value="{{item.cities.cityid}}">{{item.cities.city}}</option>
+						</select>
+						市
+						<select id="district" class="provinces" v-model="item.areass.area">
+							
+							<option selected="selected" value="{{item.areass.areaid}}">{{item.areass.area}}</option>
+						</select>
+						区
+					</li>
+					<li>
+						详细地址：<input type="text" class="dh" maxlength="20" v-model="items.C_address"/>
+					</li>
+					<li>
+						合作方式：
+						<select id="C_cooperation" class="provinces prov">
+							{{{'cC_cooperation'|options}}}					
+					</select>
+					</li>
+					<li>
+						客户规模：
+						<select id="C_scale" class="provinces prov" >
+							{{{'cC_scale'|options}}}
+						</select>
+					</li>
+				</ul>
+			</div>
+			<div class="li_uts">
+				<button class="cp" v-on:click="cp()">确定</button>
+				<button class="out" onclick="util.bcak()">返回</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/utils.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/CRM_client_ifrem.js" ></script>
+		<script>
+			var vm = new Vue({
+				el: '#ove_a',
+				data: {
+					item:'',
+					itemo:{
+						cC_kind:[
+							{text:"请选择",value:""},
+							{text:"个人",value:"1"},
+							{text:"企业",value:"2"}
+						],
+						cC_cooperation:[
+							{text:"请选择",value:""},
+							{text:"临时",value:"1"},
+							{text:"长期",value:"2"},
+							{text:"战略合作",value:"3"}
+						],
+						cC_scale:[
+							{text:"请选择",value:""},
+							{text:"小型",value:"1"},
+							{text:"中型",value:"2"},
+							{text:"大型",value:"3"}
+						]
+					},
+					items:"",
+					city:{
+						
+					},
+					zt: ''
+				},
+				methods: {
+					cp:function(){
+						if(objs_ove.Sunber==2){	
+							var Mi =$('#Ptime').val();	            	
+							var Min = /^[0-9]*$/;
+			            	if (!Min.test(Mi)) { 
+			            	    alert("手机号码,不能为汉字！")
+								return false 
+								} else {
+								client();
+								return true 
+								} 							
+						}else{		
+							var Mi =$('#Ptime').val();	            	
+							var Min =  /^[0-9]*$/;
+			            	if (!Min.test(Mi)) { 
+			            	    alert("手机号码,不能为汉字！")
+								return false 
+								} else {
+								clientp();	
+								return true 
+								} 													
+						}
+						
+					}
+				},
+				filters:{
+					options:function(val){
+						var itemKey = val.substring(1,val.length);
+						var data = this.$data.itemo[val];
+						var returns = [];
+						for(var i=0;i<data.length;i++){
+							var option_ = document.createElement("option");
+							option_.innerText = data[i].text;
+							option_.value = data[i].value;
+							if(data[i].value==this.items[itemKey]){
+								option_.setAttribute("selected",true);
+							}
+							returns.push(option_.outerHTML);
+						}
+						return returns.join("");
+					}
+				}
+			})
+			var objs_ove = util.getExreas();
+			widom();
+			function extend(p,c){
+				for(var itemo in c){
+					p[itemo] = c[itemo];
+					}
+				}
+			function Pduan(){
+				$(".inputMax").keyup(function () {
+		                $(this).val($(this).val().replace(/[^0-9.]/g, ''));
+		            }).bind("paste", function () {  //CTR+V事件处理    
+		                $(this).val($(this).val().replace(/[^0-9.]/g, ''));
+		            }).css("ime-mode", "disabled"); //CSS设置输入法不可用
+			}
+			Pduan();
+		</script>
+	</body>
+</html>

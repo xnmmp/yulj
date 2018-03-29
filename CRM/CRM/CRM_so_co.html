@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_so_co.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="so">
+			<div class="cen_1 ceon">
+				<h1>派单详情</h1>
+			</div>
+			<div class="tab">
+				<img src="img/xg.png" class="img_">
+				<span class="bj ture" v-on:click="soco">修改</span>
+			</div>
+			<div class="cen_2">
+				<ul>
+					<li class="li_ove">
+						客户名称：<span>{{items.C_name}}</span>
+					</li>
+					<li>
+						派单人：<span>{{items.Addbusinessman}}</span>
+					</li>
+					<li>
+						跟单人：
+						<select id="province" class="provinces prov" disabled="disabled">
+						<option value="0">{{name.B_documentaryName}}</option>
+						</select>
+					</li>					
+				</ul>
+				<ul>
+					<li class="li_ove">
+						商机名称：<span>{{items.B_name}}</span>
+					</li>
+					<li>
+						跟单人职责：<textarea disabled="disabled">{{items.B_documentaryneed}}</textarea>
+					</li>
+				</ul>
+			</div>
+			<div class="tabs">
+				<button v-on:click='out()'>返回</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_sjpaidan_ifrem.js" ></script>
+		<script>
+			var vm = new Vue({
+				el:'#so',
+				data:{
+					items:{
+						B_documentaryName:''
+					},
+					ids:'',
+					name:''
+				},
+				methods:{
+					soco:function(){
+//						console.log(vm.$data.items);
+//						console.log(vm.$data.name)
+						util.openWindow("CRM_so_out.html",{
+							Username:vm.$data.name.Username,
+							Token:vm.$data.name.Token,
+							ID:vm.$data.items.ID,
+							UserID:vm.$data.name.UserID,
+							C_name:vm.$data.name.C_name,
+							Addbusinessman:vm.$data.name.Addbusinessman,
+							B_documentaryID:vm.$data.items.B_documentaryID,
+							B_documentaryneed:vm.$data.items.B_documentaryneed
+						},"inframe");
+					},
+					out:function(){
+						window.location.href="CRM_so.html"
+					}
+				}
+			})
+			so_filtrate_oves();
+		</script>
+	</body>
+</html>

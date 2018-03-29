@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_so.css" />
+		<title>商机派单</title>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>商机派单</h1>
+				<ul id="time">
+					<li>
+						<span class="span_text">商机名称:</span><input type="text" id="B_name" class="text_ove two" />
+						<span class="span_text">跟单人名称:</span><input type="text" id="documentaryname" class="text_ove two" />
+						<button class="bt" style="cursor: pointer;z-index: 100;" v-on:click='btOne()'>开始查询</button>
+					</li>
+					<li>
+						<span class="span_texts">修改日期:<input id="Mindate" class="timeInput" >--<input id="Maxdate" class="timeInput" ></span>
+					</li>
+				</ul>
+			</div>			
+			<div class="cen_2" >
+				<ul class="cen_ul1">
+					<li>商机名称</li>
+					<li>客户名称</li>
+					<li>跟单人</li>
+					<li class="foot"></li>
+				</ul>
+				<ul class="cen_ul2" v-for="item in items">					
+					<li>{{item.B_name}}</li>
+					<li>{{item.C_name}}</li>
+					<li>{{item.B_documentaryName}}</li>
+					<li class="foot"><span v-on:click="btn(item.ID,$index)">查看详情</span></li>
+					
+				</ul>
+				<div class="li_show">
+						<div class="box">
+							<div class="tcdPageCode">
+							</div>
+						</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_sjpaidan_ifrem.js" ></script>
+		<script type="text/javascript" src="js/jquery.page.js" ></script>
+		<script type="text/javascript" src="js/laydate/laydate.js" ></script>
+		<script type="text/javascript" src="js/laydate/common.js" ></script>
+		<script>		
+			var vm = new Vue({
+				el:'#ul_ove',
+				data:{
+					items: '',
+					pure:'',
+					itemst:'',
+					page:1,
+					rows:5,
+					count:0
+					},
+					methods:{
+						btn:function(id,index){	
+//							console.log(id)
+							util.openWindow("CRM_so_co.html",{
+							Username:vm.$data.itemst.Username,
+							Token:vm.$data.itemst.Token,
+							ID:id,
+							UserID:vm.$data.itemst.UserID,
+							Addbusinessman:vm.$data.itemst.Addbusinessman,
+							C_name:vm.$data.items[index].C_name,
+							B_documentaryName:vm.$data.items[index].B_documentaryName
+						},"inframe");
+						},
+						btOne:function(){
+						vm.$data.rows = 5;
+						vm.$data.page = 1;
+						vm.$data.count = 0;
+						isH = true;
+						so_flitrate();
+						pege();
+					}
+				}					
+			})
+			so_flitrate();
+		</script>
+		<script>
+					   	laydate.skin('molv');				
+					    laydate({
+					        elem: '#time .timeInput'
+					    })
+		</script>
+	</body>
+</html>

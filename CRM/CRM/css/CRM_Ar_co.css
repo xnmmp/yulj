@@ -1,0 +1,183 @@
+.center{
+	height: 1000px;
+}
+.ove_1{
+	width: 780px;
+	height: 86px;
+	border: 1px solid #D3D3D3;
+	margin-left: 10px;
+	background: #F2F2F2;
+}
+.ove_2{
+	width: 750px;
+	margin-left: 30px;
+	height: 48px;
+	font-size: 14px;
+	color: #333333;
+	line-height: 48px;
+}
+.ove_1>ul>li>.pr_ove {
+    width: 80px;
+}
+.ove_3{
+	width: 780px;
+	height: 275px;
+	margin-top: 15px;
+	margin-left: 10px;
+}
+.ove_3>ul{
+	margin: 0;
+	padding: 0;
+	width: 90px;
+	height: 275px;
+	float: left;
+	list-style: none;
+}
+.ove_3>ul>li{
+	width: 90px;
+	height: 34px;
+	text-align: center;
+	line-height: 34px;
+}
+.ove_3>ul>li>input{
+	width: 15px;
+	height: 15px;
+}
+.ove_3>.ul_san{
+	margin-left: 50px;
+}
+.ove_3>.ul_sans{
+	margin-left: 100px;
+}
+.ove_3>ul>.dec{
+	letter-spacing:29px;
+	padding-left: 15px;
+}
+.pr_ove{
+	width: 138px;
+}
+.ove_1>.div_1{
+	width: 100%;
+	height: 43px;
+}
+.ove_1>.div_2{
+	height: 43px;	
+	font-size: 14px;
+	color: #333333;
+	line-height: 43px;
+}
+.ove_1>.div_2>div{
+	width: 360px;
+    height: 43px;
+    line-height: 43px;
+    float: left;
+    font-size: 14px;
+    color: #333333;
+    margin-left: 20px;
+
+}
+.ove_1>.div_1>div{
+	width: 360px;
+	height: 43px;
+	line-height: 43px;
+	float: left;
+	font-size: 14px;
+	color: #333333;
+	margin-left: 20px;
+}
+.oves_1 {
+    width: 828px;
+    height: 430px;
+}
+.oves_1>ul {
+    width: 390px;
+    height: 430px;
+    float: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+}
+.oves_1>ul>li {
+    width: 100%;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333333;
+}
+.oves_1>ul>.li_st {
+    height: 280px;    
+}
+.input_ove {
+    width: 153px;
+}
+.oves_1>ul>li>.pr_ove {
+    width: 50px;
+}
+.oves_1>ul>li>.pr_two {
+    width: 195px;
+}
+.li_st>.img_ {
+    float: right;
+    width: 164px;
+    height: 180px;
+    margin-top: 40px;
+    margin-right: 60px;
+    cursor: none;
+}
+.tab>.img_s{
+	float: left;
+	margin-left: 20px;
+	cursor: none;
+}
+.dce{
+	letter-spacing:3px
+}
+.oves_1>ul>li>.sex {
+    margin-left: 40px;
+}
+.red{
+	color: red;
+	margin-left: 2px;
+}
+.tab>.img_{
+	margin-left: 600px;
+}
+.tab>.img_st{
+	margin-left: 680px;
+}
+.blues {
+    overflow: hidden;
+    position: relative;
+    width: 30px;
+    height: 25px;
+    margin-left: 80px;
+    line-height: 25px;
+}
+#updata {
+   	position: relative;
+    width: 40px;
+    height: 25px;
+    background-image: url(../img_log/shangc.png);
+    background-size:40px 25px;
+    top: 0px;
+    right: 310px;
+}
+#updata input {
+    opacity: 0;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+    bottom: 0px;
+    z-index: 88;
+    background-color: rgba(0,0,0,0);
+    -webkit-opacity: 0;
+}
+#O_fileURL {
+    min-width: 100px;
+    background: #FFFFFF;
+    border: 1px solid #666666;
+    overflow: hidden;
+}

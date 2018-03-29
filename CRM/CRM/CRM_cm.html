@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/html.css" />
+		<link rel="stylesheet" href="css/evalindex.css" />
+		<link rel="stylesheet" href="css/CRM_cm.css" />
+		<link rel="stylesheet" href="css/xcConfirm.css" />
+		<title>CRM客户管理系统</title>
+	</head>
+	<body>
+	
+		<!--头部导航-->
+		<div id="header" class="header">
+			<div class="center">
+					
+				<div class="header_rights">
+					<ul>
+						<li class="li">
+							<img class="li_tu1" src="img/toux.png" />
+							<span class="login" id="userName" onclick="CRM_names()">登录</span>
+						</li>
+						<li class="service" onclick="CRM_out()">【退出】</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="seach">
+			<div class="center">
+				<div class="logo">
+					<img src="img/logo.png" height="61px" />
+				</div>
+				<div class="logo_title">
+					<img src="img/crmkh.png" height="22px" />
+				</div>
+			</div>
+		</div>
+		
+		<div class="center centent">
+			
+			<div class="center centen">
+			<div class="cen">
+				<ul class="cen_1">
+					<li onclick="CRM_co()">
+						<img src="img/qian.png"/>
+						<span>商机信息</span>						
+					</li>
+					<div class="seach_x"></div>
+					<li class="two" onclick="CRM_filtrate()">
+						<img src="img/shuib.png"/>
+						<span>商机筛选</span>						
+					</li>
+					<div class="seach_x"></div>
+					<li class="sans" onclick="CRM_so()">
+						<img src="img/baid.png"/>
+						<span>商机派单</span>						
+					</li>
+					<div class="seach_x"></div>
+					<li class="san" onclick="CRM_pv()">
+						<img src="img/kh.png"/>
+						<span>客户拜访</span>						
+					</li>
+					<div class="seach_x"></div>
+					<li class="san" onclick="CRM_baoj()">
+						<img src="img/fangan.png"/>
+						<span>方案报价</span>						
+					</li>
+					<div class="seach_x"></div>
+					<li onclick="CRM_as()">
+						<img src="img/gaoshou.png"/>
+						<span>需求评估</span>						
+					</li>
+					<div class="seach_x"></div>
+					<li onclick="CRM_bg()">
+						<img src="img/bi.png"/>
+						<span>签单合同</span>						
+					</li>
+					<div class="seach_x"></div>
+					<li class="btn" onclick="beijtu()">
+						<img src="img/lunz.png"/>
+						<span>系统设置</span>						
+					</li>
+					<div class="xia">
+						<ul>
+							<li onclick="CRM_Ar()">操作员管理</li>
+							<li onclick="CRM_client()">客户管理</li>
+						</ul>
+					</div>
+					<li class="xia_ove">
+						<img src="img/whao.png"/>
+						<span>帮助信息</span>
+					</li>
+				</ul>
+				<ul class="cen_2">
+					<li class="li2">
+						<span>首页</span><span class="shouz shouz1"></span><span class="shouz shouz2"></span>
+						<span class="kf">客服热线：021-57631526  /  400-7566076</span>
+					</li>
+					<li id="li_li3" class="li3">
+						<img id="img_ove" src="img/beijtu.jpg"/>
+						<iframe id="inframe"></iframe>
+					</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/resize.js" ></script>
+		<script type="text/javascript" src="js/IE8.js" ></script>
+		<script type="text/javascript" src="js/CRM_cm_ifrem.js" ></script>
+		<script type="text/javascript" src="js/xcConfirm.js" ></script>
+		<script type="text/javascript">
+			var objs_ove = util.getExreas(null,true);
+			if(objs_ove.ID){
+				var objs_two = {
+					'T_names':objs_ove.T_name,//管理员名字
+					'T_ID':objs_ove.ID,//管理员ID
+					'T_IDs':objs_ove.T_UserID,//管理员父ID
+					'T_role':objs_ove.T_role,//权限管理
+					'Token':objs_ove.Token,//获取接口
+					'Username':objs_ove.T_accountnumber//获取接口
+				}
+			}else{
+				location.href="CRM_log.html"
+			}
+			if (objs_two.T_role == 3) {
+			    $('.two').hide();
+			    $('.sans').hide();
+			    $('.xia_ove').hide();
+			    $('.xia>ul>li')[0].setAttribute('class', 'red');
+			    $('.cen>.cen_1>li').css({
+			        ' min-height': '81px',
+			        'line-height': '81px'
+			    })
+			    $('.red').css({
+			        'display': 'none',
+			        'margin-top': '-35px'
+			    });
+			}
+			img_oput();
+			$('.login').text(objs_two.T_names);//用户的姓名
+			if ($('.login').text() == '') {
+			    $('.li').attr('onclick', 'CRM_names()')
+			}
+			//左导航
+			$('.cen>.cen_1>li').on('click',function(){
+				var index = $(this).find('span').text();
+				$('.shouz1').text('>'+'  '+index);
+				$('.shouz2').text('')
+			})
+			//下拉导航			
+			$('.cen>.cen_1>.xia>ul>li').on('click',function(){
+				var index = $(this).text();
+				var texts = $('.btn>span').text();
+				$('.shouz1').text('> ' + texts)
+				$('.shouz2').text('>'+'  '+index);
+			})
+			//监听DIV的高宽，当添加元素时。最外层的盒子变高而变高。
+			$(".cen>.cen_1").resize(function(){
+				var flse = $(this).height();				
+				$('.cen').css({
+					'height':flse+'px'
+				});				
+				$('.centent').css({
+					'height':(flse+50)+'px'
+				});											
+				if(flse>483){
+					$('.cen>.cen_2>.li3').css({
+					'height':flse+'px'
+					})					
+					$('iframe ').css({
+					'height':(flse)+'px'
+				});
+				}else{
+					$('.cen>.cen_2>.li3').css({
+					'height':flse+'px'
+					})
+					$('iframe ').css({
+					'height':flse+'px'
+				});	
+				}
+			});
+			//更新盒子的状态
+			$(".cen>.cen_1").resize();
+			var a = 1;
+			$('.btn').on('click',function(){
+				if(a%2==0){					
+					$('.xia').animate({
+					'margin-top':'-55px'
+					},200);
+					a++;
+				}else{
+					$('.xia').animate({
+					'margin-top':'0px'
+					},200);
+					a++;
+				}
+				})
+		</script>
+	</body>
+</html>

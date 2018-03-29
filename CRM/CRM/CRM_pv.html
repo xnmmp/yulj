@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_pv.css" />
+		
+		<title>客户拜访</title>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>客户拜访</h1>
+				<ul id="time">
+					<li>
+						<span class="span_text">客户姓名:</span><input type="text" id="C_name" class="text_ove two" />
+						<span class="span_text">商机名称:</span><input type="text" id="B_name" class="text_ove two" />
+						<button class="bt" style="cursor: pointer;z-index: 100;" v-on:click='btOne()'>开始查询</button>
+					</li>
+					<li>						
+						<span class="span_text">商机日期:<input id="Mindate" class="timeInput" >--<input id="Maxdate" class="timeInput" ></span>
+					</li>
+				</ul>
+			</div>
+			<div id="div_ove" class="tab">
+				<img src="img/xg.png" class="img_">
+				<span class="bj" v-on:click="btn()">修改</span>
+			</div>
+			<div class="cen_2" >
+				<ul class="cen_ul1">
+					<li>选项</li>
+					<li>商机名称</li>
+					<li>客户名称</li>
+					<li>拜访时间</li>
+					<li></li>
+				</ul>
+				<ul class="cen_ul2" v-for="item in items">
+					
+					<li >
+						<!--<input type="radio" name="name"/>-->
+						<label  id="{{item.ID}}" v-on:click="btns(item.ID,$index)">
+						    <input type="radio" class="hidden-input" name="name1" />
+						    <span class="your style about radio" ></span>
+						</label>
+					</li>
+					<li>{{item.CV_businessName}}</li>
+					<li>{{item.CV_consumerName}}</li>
+					<li>{{item.CV_datetime}}</li>
+					<li><span v-on:click="obj(item.ID,$index)">立即查看</span></li>
+				</ul>
+				<div class="li_show">
+						<div class="box">
+							<div class="tcdPageCode">
+							
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_pv_ifrem.js" ></script>
+		<script type="text/javascript" src="js/jquery.page.js" ></script>
+		<script type="text/javascript" src="js/laydate/laydate.js" ></script>
+		<script type="text/javascript" src="js/laydate/common.js" ></script>
+		<script>
+			var vm = new Vue({
+				el:'#ul_ove',
+				data:{
+					items:'',
+					shuj:'',
+					itemst:'',
+					page:1,
+					rows:5,
+					count:0,
+					Sunber:'',
+					index:''
+				},
+				methods:{
+					btns:function(id,index){		
+						vm.$data.shuj = id;
+						vm.$data.index = index;
+					},
+					btn:function(e){
+						if(vm.$data.shuj==''){
+							alert('请选择需要修改对象!')
+						}else{
+							util.openWindow("CRM_pv_cou.html",{
+							Username:objs_ove.T_accountnumber,
+							Token:objs_ove.Token,
+							ID:vm.$data.shuj,
+							index:vm.$data.index,
+							Sunber:1
+						},"inframe");
+						}
+					},
+					obj:function(id,index){
+						util.openWindow("CRM_pv_co.html",{
+							Username:objs_ove.T_accountnumber,
+							Token:objs_ove.Token,
+							ID:id,
+							index:index,
+							Sunber:0
+						},"inframe");
+					},
+					btOne:function(){
+						vm.$data.rows = 5;
+						vm.$data.page = 1;
+						vm.$data.count = 0;
+						isH = true;
+						PV_ifrem();
+						pege();
+					}
+				}
+			
+			})	
+			var objs_ove = util.getExreas(null,true);
+			PV_ifrem();
+		</script>
+		<script>
+					   	laydate.skin('molv');				
+					    laydate({
+					        elem: '#time .timeInput'
+					    })
+		</script>
+	</body>
+</html>
+

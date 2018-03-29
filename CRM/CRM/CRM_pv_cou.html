@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_pv_co.css" />
+		<title></title>
+        <style>
+            .imgfe {
+                position: absolute;
+                left: 320px;
+                top: 0;
+            }
+        </style>
+	</head>
+	<body>
+	<div class="center" id="ove_a">
+			<div class="cen_1 ceon">
+				<h1>客户拜访<span class="zt"></span></h1>
+			</div>
+			<div class="tab">
+				<span class="img_s">状态：</span><span class="zt"></span>
+			</div>
+			<div class="cen_2">
+				<ul>
+					<li>
+						客户名称：<input id="CV_consumerName" type="text" v-model="item.CV_consumerName"/>
+					</li>
+					<li>
+						拜访形式：<select id="CV_ways" class="provinces prov"  >
+							{{{'cCV_ways'|options}}}
+						</select>
+					</li>	
+					<li>
+						对方人员：<input type="text" id="CV_oppositepeople" maxlength="8" v-model="item.CV_oppositepeople"/>
+					</li>
+					<li>
+						拜访目的：<select id="CV_purpose" class="provinces prov"  >
+							{{{'cCV_purpose'|options}}}
+						</select>
+					</li>
+					<li class="li_ove">
+						客户态度：<select id="CV_feedback" class="provinces prov"  >
+							{{{'cCV_feedback'|options}}}
+						</select>
+					</li>
+					<li>
+						备      注：<textarea id="CV_remark1" v-model="item.CV_remark1"></textarea>
+					</li>
+				</ul>
+				<ul class="ul_two">
+					<li>
+						交谈内容：<textarea id="CV_talkdetails" v-model="item.CV_talkdetails"></textarea>
+					</li>
+					<li>
+						下步计划：<textarea id="CV_lowerplan" v-model="item.CV_lowerplan"></textarea>
+					</li>
+				</ul>
+			</div>
+			<div class="tabs">
+				<img src="img/wjjia.png" class="img_ove"/>
+				<img src="img/xiaz.png" />				
+				<span class="blues">
+					<form id="updata">
+						<input type="file" id="upload" name="show"/>
+					</form>
+					上传资料
+				</span>
+				<input id="O_fileURL" class="right" v-model="img_.Name" disabled="disabled"></input>
+                <img src="img/x.png" class="imgfe" v-on:click="sc(img_.ID,$index)" />
+				<button onclick="util.bcak()">返回</button>
+				<button v-on:click="qd()" class="qd">确定</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_pv_ifrem.js" ></script>
+		<script type="text/javascript" src="js/jquery-form.js" ></script>
+		<script type="text/javascript" src="js/updata.js" ></script>
+        <script type="text/javascript" src="js/Remove.js"></script>
+		<script>
+			var vm = new Vue({
+				el:'#ove_a',
+				data:{
+					item:'',
+					items:{
+						cCV_ways:[
+							{text:"请选择",value:"0"},
+							{text:"上门",value:"1"},
+							{text:"电话",value:"2"}
+						],
+						cCV_purpose:[
+							{text:"请选择",value:"0"},
+							{text:"熟悉客户建立感情",value:"1"},
+							{text:"了解客户需求",value:"2"},
+							{text:"现场勘查诊断",value:"3"},
+							{text:"方案论证",value:"4"},
+							{text:"报价论证",value:"5"},
+							{text:"商定合同",value:"6"},
+							{text:"挖掘商机需求",value:"7"},
+							{text:"其他",value:"8"}
+						],
+						cCV_feedback:[
+							{text:"请选择",value:"0"},
+							{ text: "认可", value: "1" },
+							{text:"观望",value:"2"},
+							{ text: "冷漠", value: "3" },
+						]
+					},
+					zk:'',
+					Sunber:'',
+					img_:""
+				},
+				methods:{
+					qd:function(){
+						if(objs_five.Sunber == 2){
+							
+							pv_();
+						}else{
+							PV_ifrem_san();	
+						}
+						
+					},
+					sc: function (id, index) {
+					    if (confirm('确定删除重新上传？')) {
+					        vm.$data.id = id;
+					        pdata();
+					    } else {
+
+					    }
+					}
+				},
+				filters:{
+					options:function(val){
+						var itemK = val.substring(1,val.length);
+						var data = this.$data.items[val];
+						var returns = [];
+						for(var i = 0;i<data.length;i++){
+							var option_ = document.createElement('option');
+							option_.innerText = data[i].text;
+							option_.value = data[i].value;
+							if(data[i].value == this.item[itemK]){
+								option_.setAttribute("selected",true);
+							}
+							returns.push(option_.outerHTML);
+						}
+						return returns.join("");
+					}
+				}
+			})
+			var objs_five = util.getExreas();
+			function extend(p,c){
+						for(var item in c){
+							p[item] = c[item];
+						}
+					}
+			if (objs_five.Sunber == 1) {
+			    PV_ifrem_two();
+			    $('#CV_consumerName').attr("disabled", "disabled");
+			    $('.zt').text('修改');
+			} else {
+			    $('#CV_consumerName').attr("disabled", "disabled");
+			    $('#CV_consumerName').val(objs_five.CV_consumerName);
+			    $('#O_fileURL').hide();
+			    $('.imgfe').hide();
+			    $('.zt').text('新增');
+			}
+		</script>
+	</body>
+</html>

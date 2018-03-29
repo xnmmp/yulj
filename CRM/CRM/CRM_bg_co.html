@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_rito.css" />
+		<link rel="stylesheet" href="css/CRM_bg_co.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="ul_ove">
+			<div class="cen_1 ceon">
+				<h1>签单合同</h1>
+			</div>
+			<div class="tab">
+				<span class="img_s">状态：</span><span class="zt">查看</span>
+			</div>
+			<div class="cen_2">
+				<div class="cen_2s">
+					<ul>
+						<li>签单日期：<span>{{items.P_datetime}}</span></li>
+						<li>合同名称：<span>{{items.P_name}}</span></li>
+						<li>合同签订人：<span>{{items.P_cookiename}}</span></li>
+						<li class="lx">合同类型:							
+							<template v-for="option in item.cP_kindone">
+							<span v-if='option.value==items.P_kindone' v-bind:value='option.value' selected="selected" >
+										{{option.text}}
+							</span>
+							</template>	
+							<template v-for="option in item.cP_kindtwo">
+							<span v-if='option.value==items.P_kindtwo' v-bind:value='option.value' selected="selected" >
+										{{option.text}}
+							</span>
+							</template>
+						</li>
+					</ul>
+					<ul>
+						<li>合同编号：<span>{{items.ID}}</span></li>
+						<li>合同开始日期：<span>{{items.P_startdatetime}}</span></li>
+						<li>商机日期：<span>{{items.remark1}}</span></li>
+						<li>结束日期：<span>{{items.P_enddatetime}}</span></li>
+					</ul>
+				</div>
+				<div class="cen_3" >
+				<div class="ove">
+					<ul class="ove_1">
+						
+						<li class="biot">	
+							<img src="img/sc.png"/>
+                            <a href="{{img_.Url}}" target="_blank">{{img_.Name}}</a><span>下载甲方文件{{img_.index}}</span><br/>
+						</li>
+						<li>							
+							<span>合同金额：</span><span>{{items.P_money}}</span><span>元</span>							
+						</li>
+						
+					</ul>
+					
+				</div>
+				<div class="two">				
+				</div>
+				</div>
+			<div class="tabs">
+				<button v-on:click="btn">返回</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_bg_ifrem.js" ></script>
+		<script>
+			var vm = new Vue({
+				el:'#ul_ove',
+				data:{
+					items:'',
+					item:{
+					cP_kindone:[
+							{text:"请选择",value:""},
+							{text:"服务保养",value:"1"},
+							{text:"工程项目",value:"2"}
+							],
+						cP_kindtwo:[
+							{text:"请选择",value:""},
+							{text:"闭口合同",value:"1"},
+							{text:"开口合同",value:"2"}
+							]	
+					},
+					Name:'',
+					bt:'',
+					date:'',
+					img_:'',
+					state:0
+					
+				},
+				methods:{
+					btn:function(){
+						util.bcak();
+					}
+				}
+			})
+			bg_ifrem_two();
+			
+			disan();
+		</script>
+	</body>
+</html>

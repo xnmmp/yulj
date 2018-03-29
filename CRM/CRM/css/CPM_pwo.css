@@ -1,0 +1,23 @@
+.ove_1{
+	width: 828px;
+	height: 200px;
+}
+.ove_1>ul{
+	width: 369px;
+	height: 200px;
+	position: relative;
+	left: 200px;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.ove_1>ul>li{
+	width: 100%;
+	height: 30px;
+	margin-top: 15px;
+	font-size: 14px;
+	color: #333333;
+}
+.input_ove{
+	width: 196px;
+}

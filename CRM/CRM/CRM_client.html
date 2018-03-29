@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/CRM_client.css" />
+		<link rel="stylesheet" href="css/CRM_co.css" />
+		<title></title>
+	</head>
+	<body>
+		<div class="center" id="ove_a">
+			
+			<div class="cen_1 ceon">
+				<h1>客户信息</h1>
+				<ul id="time">
+					<li>
+						<span class="span_text">客户姓名:</span><input type="text" id="C_name" class="text_ove two" />
+						<button class="bts" style="cursor: pointer;z-index: 100;" v-on:click='btOne()'>开始查询</button>
+					</li>
+					<li>						
+						<!--<span class="span_text">商机日期:<input id="Mindate" class="timeInput" >--<input id="Maxdate" class="timeInput" ></span>-->						
+					</li>
+				</ul>
+			</div>
+			<div class="tab">
+					<img src="img/jia.png" />
+					<span class="bj" v-on:click="xz">新增</span>
+			</div>
+			<div class="cen_2 ove">
+				<ul class="cen_ul_s">
+					<li class="cen_li_1">序号</li>
+					<li class="cen_li_2">客户名称</li>
+					<li>电话</li>
+					<li>联系人</li>
+					<li>合作方式</li>
+					<li>详情</li>
+				</ul>
+				<ul id="Sunber" class="cen_ul2_s" v-for="item in items">
+						<li class="cen_li_1" v-model="Sunber">{{$index+1}}</li>
+						<li class="cen_li_2">{{item.C_name}}</li>
+						<li>{{item.C_linkphone}}</li>
+						<li>{{item.C_linkname}}</li>
+						<template v-for="option in itemo.cC_cooperation">
+						<li v-if='option.value==item.C_cooperation' v-bind:value='option.value' selected="selected">
+							{{option.text}}
+						</li>
+						</template>
+						<li><span class="bj" v-on:click="out(item.ID,$index)">查看详情</span></li>
+						
+				</ul>
+				<div class="li_show">
+						<div class="box">
+							<div class="tcdPageCode">
+							
+							</div>
+						</div>
+					</div>
+			</div>			
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/IE8.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/CRM_client_ifrem.js" ></script>
+		<script type="text/javascript" src="js/jquery.page.js" ></script>
+	<script>
+	var vm = new Vue({
+		el:'#ove_a',
+		data:{
+			items:{},
+			itemo:{
+				cC_cooperation:[
+							{text:"无",value:"0"},
+							{text:"临时",value:"1"},
+							{text:"长期",value:"2"},
+							{text:"战略合作",value:"3"},
+						]
+			},
+			page:1,
+			rows:5,
+			count:0
+		},
+		methods:{
+			xz:function(){
+				util.openWindow("CRM_client_co.html",{
+							Username:objs_oves.T_accountnumber,
+							Token:objs_oves.Token,
+							UserID:objs_oves.T_UserID,
+							Sunber:2
+						},"inframe");
+			},
+			out:function(id){
+//				console.log(id)
+				util.openWindow("CRM_d_client.html",{
+							Username:objs_oves.T_accountnumber,
+							Token:objs_oves.Token,
+							ID:id
+						},"inframe");
+			},
+			btOne:function(){					
+						vm.$data.rows = 5;
+						vm.$data.page = 1;
+						vm.$data.count = 0;
+						isH = true;
+						intes();
+						pege();
+					}
+		}
+	})		
+	</script>
+	<script>
+			  	var objs_oves = util.getExreas(null, true);
+				var index = 0;
+				intes();
+				function extend(p,c){
+				for(var itemo in c){
+					p[itemo] = c[itemo];
+					}
+				}
+//				laydate.skin('molv');				
+//					    laydate({
+//					        elem: '#time .timeInput'
+//					    })
+	</script>
+	</body>
+</html>

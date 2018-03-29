@@ -1,0 +1,28 @@
+html,body{
+	width: 100%;
+	font-family: "微软雅黑" ;
+	color: #333333;
+}
+*{
+	font-family: "微软雅黑";
+	font-size: 12px;
+	color: #333333;
+}
+.clearM_p{
+	padding: 0px;
+	margin: 0px;
+}
+.center{
+	margin: 0px auto;
+	width: 1080px;
+	display: block;
+	position: relative;
+}
+.text_center{
+	text-align: center;
+}
+.ellipsis{
+	white-space: nowrap;
+　　overflow: hidden;
+　　text-overflow: ellipsis;
+}

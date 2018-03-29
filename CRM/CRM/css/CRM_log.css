@@ -1,0 +1,105 @@
+html,body,div{
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	
+}
+.centent{
+	width: 100%;
+	height: 816px;
+}
+.centent>img{
+	width: 100%;
+	height: 816px;
+}
+.centent>.center{
+	position: absolute;
+	top: 250px;
+	left: 120px;	
+	width: 1080px;
+	height: 235px;
+	margin: 0 auto;
+	
+}
+.centent>.center>div{
+	float: left;
+	width: 400px;
+	margin-left: 100px;
+	position: relative;
+	height: 235px;
+}
+.cen_log>img {
+    margin-top: 45px;
+    margin-left: 40px;
+}
+.cen_loug>ul{
+	width: 100%;
+	height: 235px;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.cen_loug>ul>li{
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	line-height: 40px;
+}
+.cen_loug>ul>.li_ove{
+	margin-top: 35px;
+	background-image: url(../img/opop.png);
+}
+.cen_loug>ul>li>input{
+	width: 335px;
+	padding-left: 7px;
+	height: 37px;
+	color: #FFFFFF;
+	outline:none;/*去蓝色框框*/
+	background: none;
+	line-height: 37px;
+	font-size: 14px;
+	float: right;
+	border: 0;
+}
+.cen_loug>ul>li>span{
+	font-size: 14px;
+	color: #FFFFFF;
+	font-family: "微软雅黑";
+}
+.cen_loug>ul>li>button{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color: #FFFFFF;
+	font-size: 16px;
+	border: 0;
+	outline:none;
+	cursor: pointer;
+	background: none;
+	filter:alpha(opacity=80);
+}
+.cen_loug>ul>li>a{
+	float: right;
+	font-size: 14px;
+	color: #4a6dc6;
+	outline:none;
+	text-decoration: none;
+	cursor: pointer;
+}
+.cen_loug>ul>.li_two{
+	background-image: url(../img/opop.png);
+}
+.cen_loug>ul>.li_san{
+	margin-top: 25px;
+	background-image: url(../img/anniu.png);
+}
+@media only screen and (width: 1600px){
+	.centent>.center {
+	    position: absolute;
+	    top: 250px;
+	    left: 320px;
+	    width: 1080px;
+	    height: 235px;
+	    margin: 0 auto;
+	}
+}
